@@ -12,7 +12,7 @@ public:
     MyLabel(QWidget * parent):QLabel(parent){}
     virtual void zdarzenie(Obserwowany *o)
     {
-          QMessageBox::information(0, "info", "obserwator(Stan Konta) powiadomiony");
+         // QMessageBox::information(0, "info", "obserwator(Stan Konta) powiadomiony");
           QString login;
           QSqlQuery zapytanie("SELECT saldo FROM users WHERE id='"+login.setNum(Wydatnik::getInstance()->getUserid())+"';");
           while(zapytanie.next())

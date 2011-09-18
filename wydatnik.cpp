@@ -119,7 +119,7 @@ bool Wydatnik::zaloguj(QString _login, QString _haslo)
             this->changeConnection(true);
         }
 
-        ui->tableView->show();
+        ui->tableWidget->show();
 
         return true;
     }
@@ -157,14 +157,34 @@ bool Wydatnik::connectDB(QString _hostname, QString _username, QString _password
 }
 void Wydatnik::exec(QString _query)
 {
-    queryModel = new QSqlQueryModel(ui->tableView);
-    queryModel->setQuery(_query,*db);
+    QSqlQuery zapytanie(_query);
 
-    if(queryModel->lastError().type() == QSqlError::NoError)
+    ui->tableWidget->sqlQuery(zapytanie);
+    ui->tableWidget->setHorizontalHeaderLabel(0,"zaznaczenie");
+    //ui->tableWidget->hideColumn(ui->tableWidget->columnCount()-1);
+
+
+
+    MyCheckBox* box;
+    if(signalMapper)
+        delete signalMapper;
+signalMapper = new QSignalMapper(this);
+
+
+    for(int i=0; i< zapytanie.numRowsAffected(); ++i)
     {
-        ui->tableView->setModel(queryModel);
-        ui->tableView->show();
+        zapytanie.next();
+        box = new MyCheckBox(zapytanie.value(0).toInt(),i,0,ui->tableWidget);
+
+        ui->tableWidget->wstawWidget(i,0,box);
+        //connect(box,SIGNAL(clicked()),signalMapper,SLOT(map()));
+        signalMapper->setMapping(box,box);
+        connect(box,SIGNAL(clicked()),signalMapper,SLOT(map()));
+
     }
+    connect(signalMapper,SIGNAL(mapped(QWidget*)),this,SLOT(zaznaczenie(QWidget*)));
+    connect(ui->Button_edytuj, SIGNAL(clicked()), this, SLOT(edytuj()));
+
 }
 void Wydatnik::changeConnection(bool _connected)
 {
@@ -250,7 +270,7 @@ void Wydatnik::usunObserwatora(Obserwator *obs)
 void Wydatnik::wyszukaj()
 {
     QString zapytanie, tmp;
-    zapytanie = "Select nazwa, kwota, data, opis FROM expenses ";
+    zapytanie = "Select id, nazwa, kwota, data, opis FROM expenses ";
     if(ui->BoxTyp->currentIndex() == 1) //wydatek
     {
         zapytanie.append("where wydatek = '1' AND ");
@@ -320,4 +340,61 @@ void Wydatnik::RefreshData(Obserwowany *o)
 vector<Dane*> Wydatnik::getData()
 {
     return dane;
+}
+
+
+void Wydatnik::zaznaczenie(QWidget* w)
+{
+    qDebug() << "zaznaczenie\n";
+    MyCheckBox* myBox = dynamic_cast<MyCheckBox*>(w);
+    if(!lista_zaznaczone.empty())
+    {
+        for(int i=0; i<lista_zaznaczone.size(); ++i)
+        { //qDebug() << "lista id: " << dynamic_cast<MyCheckBox*>(lista_zaznaczone.at(i))->getId() << "\n parametr id: " << myBox->getId();
+            if(myBox->getId() == dynamic_cast<MyCheckBox*>(lista_zaznaczone.at(i))->getId())
+            {
+                lista_zaznaczone.removeOne(w);
+                //ui->listSize->setNum(lista_zaznaczone.size());
+                return;
+            }
+        }
+    }
+    lista_zaznaczone.append(w);
+    //ui->listSize->setNum(lista_zaznaczone.size());
+    //QMessageBox::information(0,"tekst","id: "+temp.setNum(myBox->getId()));
+    ui->tableWidget->selectRow(myBox->getRowNum());
+
+}
+void Wydatnik::edytuj()
+{
+    qDebug() << "edytuj: " << lista_zaznaczone.size() << "\n";
+    QString tmp;
+    MyCheckBox* myBox;
+
+    for(int i=0; i < lista_zaznaczone.size(); i++)
+    {
+        myBox = dynamic_cast<MyCheckBox*>(lista_zaznaczone.at(i));
+        lista.erase(lista.begin(), lista.end());
+        lista << tmp.setNum(myBox->getId());
+        for(int k=1; k< ui->tableWidget->getHorizontalHederLabels().count(); ++k)
+        {
+
+            if(ui->tableWidget->item(myBox->getRowNum(),k))
+            {
+                qDebug() << ui->tableWidget->item(myBox->getRowNum(),k)->text();
+                lista << ui->tableWidget->item(myBox->getRowNum(),k)->text();
+                myBox->setChecked(false);
+
+            }
+
+
+        }
+        lista_zaznaczone.removeOne(myBox);
+        editData = new EditData(lista);
+        editData->show();
+
+    }
+
+
+
 }

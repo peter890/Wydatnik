@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>EditData</class>
+ <widget class="QWidget" name="EditData">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>300</width>
+    <height>200</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>300</width>
+    <height>200</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>300</width>
+    <height>200</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QLineEdit[echoMode=&quot;2&quot;] {
+     lineedit-password-character: 9679;
+ }</string>
+  </property>
+  <widget class="QLabel" name="label_nazwa">
+   <property name="geometry">
+    <rect>
+     <x>11</x>
+     <y>11</y>
+     <width>37</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Nazwa</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="button_kalendarz">
+   <property name="geometry">
+    <rect>
+     <x>205</x>
+     <y>40</y>
+     <width>85</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Kalendarz</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_data">
+   <property name="geometry">
+    <rect>
+     <x>11</x>
+     <y>40</y>
+     <width>35</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Data   </string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_kwota">
+   <property name="geometry">
+    <rect>
+     <x>11</x>
+     <y>70</y>
+     <width>35</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Kwota</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_opis">
+   <property name="geometry">
+    <rect>
+     <x>11</x>
+     <y>100</y>
+     <width>33</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Opis   </string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="edit_data">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>40</y>
+     <width>131</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="edit_nazwa">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>11</y>
+     <width>231</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="edit_opis">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>100</y>
+     <width>231</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="edit_kwota">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>70</y>
+     <width>231</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="button_anuluj_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>170</y>
+     <width>62</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+color: white;
+background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #88d, stop: 0.1 #99e, stop: 0.49 #77c, stop: 0.5 #66b, stop: 1 #77c);
+border-width: 1px;
+border-color: #339;
+border-style: solid;
+border-radius: 7;
+padding: 3px;
+font-size: 10px;
+padding-left: 5px;
+padding-right: 5px;
+min-width: 50px;
+max-width: 50px;
+min-height: 13px;
+max-height: 13px;
+}</string>
+   </property>
+   <property name="text">
+    <string>Usuń</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="button_ok">
+   <property name="geometry">
+    <rect>
+     <x>205</x>
+     <y>170</y>
+     <width>62</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+color: white;
+background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #88d, stop: 0.1 #99e, stop: 0.49 #77c, stop: 0.5 #66b, stop: 1 #77c);
+border-width: 1px;
+border-color: #339;
+border-style: solid;
+border-radius: 7;
+padding: 3px;
+font-size: 10px;
+padding-left: 5px;
+padding-right: 5px;
+min-width: 50px;
+max-width: 50px;
+min-height: 13px;
+max-height: 13px;
+}</string>
+   </property>
+   <property name="text">
+    <string>OK</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="button_anuluj">
+   <property name="geometry">
+    <rect>
+     <x>114</x>
+     <y>170</y>
+     <width>62</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+color: white;
+background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #88d, stop: 0.1 #99e, stop: 0.49 #77c, stop: 0.5 #66b, stop: 1 #77c);
+border-width: 1px;
+border-color: #339;
+border-style: solid;
+border-radius: 7;
+padding: 3px;
+font-size: 10px;
+padding-left: 5px;
+padding-right: 5px;
+min-width: 50px;
+max-width: 50px;
+min-height: 13px;
+max-height: 13px;
+}</string>
+   </property>
+   <property name="text">
+    <string>Anuluj</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_opis_2">
+   <property name="geometry">
+    <rect>
+     <x>11</x>
+     <y>130</y>
+     <width>33</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Typ</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>130</y>
+     <width>232</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Wpłata</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Wydatek</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="id">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>150</y>
+     <width>21</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>id</string>
+   </property>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>edit_nazwa</tabstop>
+  <tabstop>button_kalendarz</tabstop>
+  <tabstop>button_anuluj_2</tabstop>
+  <tabstop>button_anuluj</tabstop>
+  <tabstop>button_ok</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

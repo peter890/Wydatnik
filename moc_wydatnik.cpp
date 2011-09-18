@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'wydatnik.h'
 **
-** Created: Sun Sep 18 19:10:25 2011
+** Created: Sun Sep 18 20:14:41 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_Wydatnik[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-      10,   14, // methods
+      12,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -40,9 +40,11 @@ static const uint qt_meta_data_Wydatnik[] = {
       79,    9,    9,    9, 0x0a,
       96,   94,    9,    9, 0x0a,
      116,   94,    9,    9, 0x0a,
-     142,   10,    9,    9, 0x08,
-     165,    9,    9,    9, 0x08,
-     181,    9,    9,    9, 0x08,
+     142,    9,    9,    9, 0x0a,
+     164,   10,    9,    9, 0x08,
+     187,    9,    9,    9, 0x08,
+     203,    9,    9,    9, 0x08,
+     214,    9,    9,    9, 0x08,
 
        0        // eod
 };
@@ -52,8 +54,8 @@ static const char qt_meta_stringdata_Wydatnik[] = {
     "wyloguj()\0zaloguj()\0rejestracja()\0"
     "dodajWydatek()\0o\0ustawDate(QWidget*)\0"
     "RefreshData(Obserwowany*)\0"
-    "changeConnection(bool)\0zmienStan(bool)\0"
-    "wyszukaj()\0"
+    "zaznaczenie(QWidget*)\0changeConnection(bool)\0"
+    "zmienStan(bool)\0wyszukaj()\0edytuj()\0"
 };
 
 const QMetaObject Wydatnik::staticMetaObject = {
@@ -94,12 +96,14 @@ int Wydatnik::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 4: dodajWydatek(); break;
         case 5: ustawDate((*reinterpret_cast< QWidget*(*)>(_a[1]))); break;
         case 6: RefreshData((*reinterpret_cast< Obserwowany*(*)>(_a[1]))); break;
-        case 7: changeConnection((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 8: zmienStan((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 9: wyszukaj(); break;
+        case 7: zaznaczenie((*reinterpret_cast< QWidget*(*)>(_a[1]))); break;
+        case 8: changeConnection((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 9: zmienStan((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 10: wyszukaj(); break;
+        case 11: edytuj(); break;
         default: ;
         }
-        _id -= 10;
+        _id -= 12;
     }
     return _id;
 }

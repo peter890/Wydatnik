@@ -16,7 +16,10 @@ SOURCES += main.cpp\
     login.cpp \
     registration.cpp \
     rozchody.cpp \
-    wykres.cpp
+    wykres.cpp \
+    mytablewidget.cpp \
+    mycheckbox.cpp \
+    editdata.cpp
 
 HEADERS  += wydatnik.h \
     login.h \
@@ -25,12 +28,16 @@ HEADERS  += wydatnik.h \
     wykres.h \
     obserwator.h \
     obserwowany.h \
-    mylabel.h
+    mylabel.h \
+    mytablewidget.h \
+    editdata.h \
+    mycheckbox.h
 
 FORMS    += wydatnik.ui \
     login.ui \
     registration.ui \
-    rozchody.ui
+    rozchody.ui \
+    editdata.ui
 CONFIG += libqsqlmysql4
 
 RESOURCES += \

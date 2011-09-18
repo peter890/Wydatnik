@@ -113,7 +113,7 @@ double Wykres::maxValue()
 
 void Wykres::zdarzenie(Obserwowany *o)
 {
-    QMessageBox::information(0, "info", "obserwator(WYKRES) powiadomiony");
+    //QMessageBox::information(0, "info", "obserwator(WYKRES) powiadomiony");
     if(insertData(Wydatnik::getInstance()->getData()))
     {
         rysuj = true;

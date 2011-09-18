@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'wydatnik.ui'
 **
-** Created: Sun Sep 18 19:10:09 2011
+** Created: Sun Sep 18 20:14:24 2011
 **      by: Qt User Interface Compiler version 4.7.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -28,10 +28,10 @@
 #include <QtGui/QSpacerItem>
 #include <QtGui/QStatusBar>
 #include <QtGui/QTabWidget>
-#include <QtGui/QTableView>
 #include <QtGui/QToolBar>
 #include <QtGui/QVBoxLayout>
 #include <QtGui/QWidget>
+#include <mytablewidget.h>
 #include "mylabel.h"
 
 QT_BEGIN_NAMESPACE
@@ -87,8 +87,9 @@ public:
     QLabel *label_12;
     QLineEdit *EditMax;
     QPushButton *ButtonWyszukaj;
-    QTableView *tableView;
     QSpacerItem *horizontalSpacer_2;
+    MyTableWidget *tableWidget;
+    QPushButton *Button_edytuj;
     QWidget *tab_2;
     QMenuBar *menuBar;
     QMenu *menuPlik;
@@ -350,16 +351,21 @@ public:
         horizontalLayout_11->addWidget(ButtonWyszukaj);
 
 
-        gridLayout->addLayout(horizontalLayout_11, 2, 0, 1, 1);
-
-        tableView = new QTableView(tab);
-        tableView->setObjectName(QString::fromUtf8("tableView"));
-
-        gridLayout->addWidget(tableView, 3, 0, 1, 3);
+        gridLayout->addLayout(horizontalLayout_11, 3, 0, 1, 1);
 
         horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        gridLayout->addItem(horizontalSpacer_2, 2, 1, 1, 2);
+        gridLayout->addItem(horizontalSpacer_2, 3, 1, 1, 2);
+
+        tableWidget = new MyTableWidget(tab);
+        tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
+
+        gridLayout->addWidget(tableWidget, 5, 0, 1, 3);
+
+        Button_edytuj = new QPushButton(tab);
+        Button_edytuj->setObjectName(QString::fromUtf8("Button_edytuj"));
+
+        gridLayout->addWidget(Button_edytuj, 4, 1, 1, 1);
 
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
@@ -371,7 +377,7 @@ public:
         Wydatnik->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(Wydatnik);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 800, 21));
+        menuBar->setGeometry(QRect(0, 0, 800, 23));
         menuPlik = new QMenu(menuBar);
         menuPlik->setObjectName(QString::fromUtf8("menuPlik"));
         menuEdycja = new QMenu(menuBar);
@@ -441,6 +447,7 @@ public:
         label_11->setText(QApplication::translate("Wydatnik", "Min.", 0, QApplication::UnicodeUTF8));
         label_12->setText(QApplication::translate("Wydatnik", "Max.", 0, QApplication::UnicodeUTF8));
         ButtonWyszukaj->setText(QApplication::translate("Wydatnik", "Wyszukaj", 0, QApplication::UnicodeUTF8));
+        Button_edytuj->setText(QApplication::translate("Wydatnik", "Edytuj", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("Wydatnik", "Historia", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("Wydatnik", "Tab 2", 0, QApplication::UnicodeUTF8));
         menuPlik->setTitle(QApplication::translate("Wydatnik", "Plik", 0, QApplication::UnicodeUTF8));

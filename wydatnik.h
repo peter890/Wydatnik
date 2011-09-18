@@ -28,7 +28,9 @@
 #include "wykres.h"
 #include "obserwator.h"
 #include "obserwowany.h"
-#include "firstrun.h"
+#include "mycheckbox.h"
+#include "editdata.h"
+
 
 using namespace std;
 
@@ -38,6 +40,8 @@ namespace Ui {
 class Login;
 class Registration;
 class Rozchody;
+class EditData;
+
 class Wydatnik : public QMainWindow , public Obserwowany
 {
     Q_OBJECT
@@ -81,8 +85,11 @@ private:
     Rozchody* rozchody;
     vector<Dane*> dane;
     QCalendarWidget* calendar;
+    EditData* editData;
+    QStringList lista;
+    QList<QWidget*> lista_zaznaczone; //lista ktora przechowuje informacje o zaznaczonych MyCheckBoxach. mozna wysciagnac info ktory wiersz i jakie id z mysql.
     void zaladujPolaczenia();
-    FirstRun* firstrun;
+
 
 
 
@@ -94,11 +101,13 @@ public slots:
     void dodajWydatek();
     void ustawDate(QWidget* o);
     void RefreshData(Obserwowany *o);
+    void zaznaczenie(QWidget*);
 private slots:
 
     void changeConnection(bool _connected);
     void zmienStan(bool);
     void wyszukaj();
+    void edytuj();
 
 signals:
     void changedConnection(bool _connected);
