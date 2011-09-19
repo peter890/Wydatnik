@@ -1,15 +1,15 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'wykres.h'
+** Meta object code from reading C++ file 'mycheckbox.h'
 **
-** Created: Sun Sep 18 22:39:25 2011
+** Created: Wed Sep 14 22:26:01 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "wykres.h"
+#include "mycheckbox.h"
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'wykres.h' doesn't include <QObject>."
+#error "The header file 'mycheckbox.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 62
 #error "This file was generated using the moc from 4.7.2. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -17,7 +17,7 @@
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
-static const uint qt_meta_data_Wykres[] = {
+static const uint qt_meta_data_MyCheckBox[] = {
 
  // content:
        5,       // revision
@@ -33,37 +33,35 @@ static const uint qt_meta_data_Wykres[] = {
        0        // eod
 };
 
-static const char qt_meta_stringdata_Wykres[] = {
-    "Wykres\0"
+static const char qt_meta_stringdata_MyCheckBox[] = {
+    "MyCheckBox\0"
 };
 
-const QMetaObject Wykres::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_Wykres,
-      qt_meta_data_Wykres, 0 }
+const QMetaObject MyCheckBox::staticMetaObject = {
+    { &QCheckBox::staticMetaObject, qt_meta_stringdata_MyCheckBox,
+      qt_meta_data_MyCheckBox, 0 }
 };
 
 #ifdef Q_NO_DATA_RELOCATION
-const QMetaObject &Wykres::getStaticMetaObject() { return staticMetaObject; }
+const QMetaObject &MyCheckBox::getStaticMetaObject() { return staticMetaObject; }
 #endif //Q_NO_DATA_RELOCATION
 
-const QMetaObject *Wykres::metaObject() const
+const QMetaObject *MyCheckBox::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
 }
 
-void *Wykres::qt_metacast(const char *_clname)
+void *MyCheckBox::qt_metacast(const char *_clname)
 {
     if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_Wykres))
-        return static_cast<void*>(const_cast< Wykres*>(this));
-    if (!strcmp(_clname, "Obserwator"))
-        return static_cast< Obserwator*>(const_cast< Wykres*>(this));
-    return QWidget::qt_metacast(_clname);
+    if (!strcmp(_clname, qt_meta_stringdata_MyCheckBox))
+        return static_cast<void*>(const_cast< MyCheckBox*>(this));
+    return QCheckBox::qt_metacast(_clname);
 }
 
-int Wykres::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int MyCheckBox::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QWidget::qt_metacall(_c, _id, _a);
+    _id = QCheckBox::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     return _id;

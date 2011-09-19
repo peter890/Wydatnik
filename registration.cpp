@@ -30,12 +30,14 @@ bool Registration::passwdCmp()
     {
         ui->label->setText("!");
         ui->label->setStyleSheet("QLabel{color: red}");
+        ui->edit_haslo2->setStyleSheet("QLineEdit {background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #88d, stop: 0.1 #99e, stop: 0.49 #77c, stop: 0.5 #66b, stop: 1 #77c);}");
         return false;
     }
     else
     {
         ui->label->setText("*");
         ui->label->setStyleSheet("QLabel{color: green}");
+        ui->edit_haslo2->setStyleSheet("QLineEdit{ background-color: green;}");
         return true;
     }
 }

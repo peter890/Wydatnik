@@ -28,7 +28,63 @@
   <property name="styleSheet">
    <string notr="true">QLineEdit[echoMode=&quot;2&quot;] {
      lineedit-password-character: 9679;
- }</string>
+ }
+/*QLineEdit {
+   
+    background-color: rgb(255, 255, 241);
+    selection-color: white;                        
+    selection-background-color: rgb(191, 31, 127);
+    border: 2px groove gray;
+    border-radius: 10px;
+    padding: 2px 4px;
+}
+QPushButton {
+color: white;
+background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #88d, stop: 0.1 #99e, stop: 0.49 #77c, stop: 0.5 #66b, stop: 1 #77c);
+border-width: 1px;
+border-color: #339;
+border-style: solid;
+border-radius: 7;
+
+font-size: 10px;
+
+max-width: 115px;
+
+max-height: 27px;
+}*/
+
+QLineEdit {
+padding: 1px;
+border-style: solid;
+border: 2px solid gray;
+border-radius: 8px;
+}
+
+QPushButton {
+color: white;
+background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #88d, stop: 0.1 #99e, stop: 0.49 #77c, stop: 0.5 #66b, stop: 1 #77c);
+border-width: 1px;
+border-color: #339;
+border-style: solid;
+border-radius: 7;
+padding: 3px;
+font-size: 10px;
+padding-left: 5px;
+padding-right: 5px;
+
+max-width: 110px;
+
+max-height: 15px;
+}
+
+#Login{
+	background: gray;
+}
+#EditData{
+	background: QLinearGradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #eef, stop: 1 #ccf);
+}
+
+</string>
   </property>
   <widget class="QLabel" name="label_nazwa">
    <property name="geometry">
@@ -48,12 +104,31 @@
     <rect>
      <x>205</x>
      <y>40</y>
-     <width>85</width>
-     <height>25</height>
+     <width>92</width>
+     <height>23</height>
     </rect>
    </property>
    <property name="text">
     <string>Kalendarz</string>
+   </property>
+   <property name="icon">
+    <iconset resource="icons/ikony.qrc">
+     <normaloff>:/icon/Calendar-icon.png</normaloff>:/icon/Calendar-icon.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>16</width>
+     <height>16</height>
+    </size>
+   </property>
+   <property name="autoDefault">
+    <bool>false</bool>
+   </property>
+   <property name="default">
+    <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>false</bool>
    </property>
   </widget>
   <widget class="QLabel" name="label_data">
@@ -165,6 +240,10 @@ max-height: 13px;
    <property name="text">
     <string>Usuń</string>
    </property>
+   <property name="icon">
+    <iconset resource="icons/ikony.qrc">
+     <normaloff>:/icon/Delete-icon.png</normaloff>:/icon/Delete-icon.png</iconset>
+   </property>
   </widget>
   <widget class="QPushButton" name="button_ok">
    <property name="geometry">
@@ -195,6 +274,10 @@ max-height: 13px;
    </property>
    <property name="text">
     <string>OK</string>
+   </property>
+   <property name="icon">
+    <iconset resource="icons/ikony.qrc">
+     <normaloff>:/icon/Check-icon.png</normaloff>:/icon/Check-icon.png</iconset>
    </property>
   </widget>
   <widget class="QPushButton" name="button_anuluj">
@@ -227,6 +310,10 @@ max-height: 13px;
    <property name="text">
     <string>Anuluj</string>
    </property>
+   <property name="icon">
+    <iconset resource="icons/ikony.qrc">
+     <normaloff>:/icon/Cancel-icon.png</normaloff>:/icon/Cancel-icon.png</iconset>
+   </property>
   </widget>
   <widget class="QLabel" name="label_opis_2">
    <property name="geometry">
@@ -250,6 +337,9 @@ max-height: 13px;
      <height>25</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">border-color: qlineargradient(spread:reflect, x1:0.291, y1:0.056, x2:0.359, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));</string>
+   </property>
    <item>
     <property name="text">
      <string>Wpłata</string>
@@ -262,6 +352,9 @@ max-height: 13px;
    </item>
   </widget>
   <widget class="QLabel" name="id">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -282,6 +375,8 @@ max-height: 13px;
   <tabstop>button_anuluj</tabstop>
   <tabstop>button_ok</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="icons/ikony.qrc"/>
+ </resources>
  <connections/>
 </ui>

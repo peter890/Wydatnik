@@ -6,12 +6,67 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>372</width>
-    <height>201</height>
+    <width>292</width>
+    <height>211</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Wydatnik - rozchody</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/*QPushButton {
+color: white;
+background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #88d, stop: 0.1 #99e, stop: 0.49 #77c, stop: 0.5 #66b, stop: 1 #77c);
+border-width: 1px;
+border-color: #339;
+border-style: solid;
+border-radius: 7;
+font-size: 10px;
+max-width: 115px;
+max-height: 27px;
+}
+
+QLineEdit {
+   
+    background-color: rgb(255, 255, 241);
+    selection-color: white;                        
+    selection-background-color: rgb(191, 31, 127);
+    border: 2px groove gray;
+    border-radius: 10px;
+    padding: 2px 4px;
+}*/
+QLineEdit {
+padding: 1px;
+border-style: solid;
+border: 2px solid gray;
+border-radius: 8px;
+}
+
+QPushButton {
+color: white;
+background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #88d, stop: 0.1 #99e, stop: 0.49 #77c, stop: 0.5 #66b, stop: 1 #77c);
+border-width: 1px;
+border-color: #339;
+border-style: solid;
+border-radius: 7;
+padding: 3px;
+font-size: 10px;
+padding-left: 5px;
+padding-right: 5px;
+
+max-width: 110px;
+
+max-height: 15px;
+}
+
+#Rozchody{
+	background: gray;
+}
+#centralwidget{
+	background: QLinearGradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #eef, stop: 1 #ccf);
+}
+
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -79,6 +134,10 @@
         <property name="text">
          <string>Dodaj</string>
         </property>
+        <property name="icon">
+         <iconset resource="icons/ikony.qrc">
+          <normaloff>:/icon/Add-icon.png</normaloff>:/icon/Add-icon.png</iconset>
+        </property>
        </widget>
       </item>
       <item row="6" column="2">
@@ -86,12 +145,9 @@
         <property name="text">
          <string>Anuluj</string>
         </property>
-       </widget>
-      </item>
-      <item row="6" column="0">
-       <widget class="QLabel" name="label_5">
-        <property name="text">
-         <string>kwota</string>
+        <property name="icon">
+         <iconset resource="icons/ikony.qrc">
+          <normaloff>:/icon/Cancel-icon.png</normaloff>:/icon/Cancel-icon.png</iconset>
         </property>
        </widget>
       </item>
@@ -112,6 +168,16 @@
         </property>
         <property name="flat">
          <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="label_5">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>kwota</string>
         </property>
        </widget>
       </item>

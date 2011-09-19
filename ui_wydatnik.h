@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'wydatnik.ui'
 **
-** Created: Sun Sep 18 20:14:24 2011
+** Created: Mon Sep 19 12:08:07 2011
 **      by: Qt User Interface Compiler version 4.7.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -45,6 +45,8 @@ public:
     QAction *actionDodaj_wydatek;
     QAction *actionZarejestruj;
     QAction *actionO_wydatniku;
+    QAction *actionEdytuj;
+    QAction *actionUsu_zaznaczone;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout_2;
     QLineEdit *sqledit;
@@ -52,9 +54,6 @@ public:
     QWidget *tab;
     QGridLayout *gridLayout;
     QLabel *label_13;
-    QHBoxLayout *horizontalLayout_2;
-    QLabel *label;
-    QLabel *rachunekNr;
     QVBoxLayout *verticalLayout_3;
     QHBoxLayout *horizontalLayout;
     QLabel *label_3;
@@ -87,9 +86,11 @@ public:
     QLabel *label_12;
     QLineEdit *EditMax;
     QPushButton *ButtonWyszukaj;
+    QPushButton *Button_edytuj;
     QSpacerItem *horizontalSpacer_2;
     MyTableWidget *tableWidget;
-    QPushButton *Button_edytuj;
+    QSpacerItem *horizontalSpacer_3;
+    QLabel *label_username;
     QWidget *tab_2;
     QMenuBar *menuBar;
     QMenu *menuPlik;
@@ -104,20 +105,56 @@ public:
             Wydatnik->setObjectName(QString::fromUtf8("Wydatnik"));
         Wydatnik->setEnabled(true);
         Wydatnik->resize(800, 600);
+        Wydatnik->setStyleSheet(QString::fromUtf8(""));
         actionZaloguj = new QAction(Wydatnik);
         actionZaloguj->setObjectName(QString::fromUtf8("actionZaloguj"));
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/icon/Key-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionZaloguj->setIcon(icon);
+        actionZaloguj->setIconVisibleInMenu(true);
         actionWyloguj = new QAction(Wydatnik);
         actionWyloguj->setObjectName(QString::fromUtf8("actionWyloguj"));
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/icon/Log-Out-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionWyloguj->setIcon(icon1);
         actionZako_cz = new QAction(Wydatnik);
         actionZako_cz->setObjectName(QString::fromUtf8("actionZako_cz"));
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/icon/Actions-session-exit-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionZako_cz->setIcon(icon2);
         actionDodaj_wydatek = new QAction(Wydatnik);
         actionDodaj_wydatek->setObjectName(QString::fromUtf8("actionDodaj_wydatek"));
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/icon/Add-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionDodaj_wydatek->setIcon(icon3);
         actionZarejestruj = new QAction(Wydatnik);
         actionZarejestruj->setObjectName(QString::fromUtf8("actionZarejestruj"));
+        QIcon icon4;
+        icon4.addFile(QString::fromUtf8(":/icon/Burn-Disk-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionZarejestruj->setIcon(icon4);
         actionO_wydatniku = new QAction(Wydatnik);
         actionO_wydatniku->setObjectName(QString::fromUtf8("actionO_wydatniku"));
+        QIcon icon5;
+        icon5.addFile(QString::fromUtf8(":/icon/Actions-help-about-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionO_wydatniku->setIcon(icon5);
+        actionEdytuj = new QAction(Wydatnik);
+        actionEdytuj->setObjectName(QString::fromUtf8("actionEdytuj"));
+        QIcon icon6;
+        icon6.addFile(QString::fromUtf8(":/icon/Actions-document-edit-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionEdytuj->setIcon(icon6);
+        actionUsu_zaznaczone = new QAction(Wydatnik);
+        actionUsu_zaznaczone->setObjectName(QString::fromUtf8("actionUsu_zaznaczone"));
+        QIcon icon7;
+        icon7.addFile(QString::fromUtf8(":/icon/Delete-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionUsu_zaznaczone->setIcon(icon7);
         centralWidget = new QWidget(Wydatnik);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
+        centralWidget->setStyleSheet(QString::fromUtf8("\n"
+"#centralWidget{\n"
+"	background: QLinearGradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #eef, stop: 1 #ccf);\n"
+"}\n"
+"\n"
+""));
         verticalLayout_2 = new QVBoxLayout(centralWidget);
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setContentsMargins(11, 11, 11, 11);
@@ -130,6 +167,7 @@ public:
         tabWidget = new QTabWidget(centralWidget);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
         tabWidget->setEnabled(true);
+        tabWidget->setStyleSheet(QString::fromUtf8(""));
         tab = new QWidget();
         tab->setObjectName(QString::fromUtf8("tab"));
         gridLayout = new QGridLayout(tab);
@@ -146,22 +184,6 @@ public:
         label_13->setFont(font);
 
         gridLayout->addWidget(label_13, 0, 0, 1, 1);
-
-        horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setSpacing(6);
-        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
-        label = new QLabel(tab);
-        label->setObjectName(QString::fromUtf8("label"));
-
-        horizontalLayout_2->addWidget(label);
-
-        rachunekNr = new QLabel(tab);
-        rachunekNr->setObjectName(QString::fromUtf8("rachunekNr"));
-
-        horizontalLayout_2->addWidget(rachunekNr);
-
-
-        gridLayout->addLayout(horizontalLayout_2, 0, 2, 1, 1);
 
         verticalLayout_3 = new QVBoxLayout();
         verticalLayout_3->setSpacing(6);
@@ -203,7 +225,7 @@ public:
 
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        gridLayout->addItem(horizontalSpacer, 1, 1, 1, 1);
+        gridLayout->addItem(horizontalSpacer, 1, 2, 1, 1);
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setSpacing(6);
@@ -219,7 +241,7 @@ public:
         horizontalLayout_3->addWidget(LabelSrodkiDostepne);
 
 
-        gridLayout->addLayout(horizontalLayout_3, 1, 2, 1, 1);
+        gridLayout->addLayout(horizontalLayout_3, 1, 3, 1, 1);
 
         horizontalLayout_11 = new QHBoxLayout();
         horizontalLayout_11->setSpacing(6);
@@ -259,9 +281,9 @@ public:
         font1.setBold(true);
         font1.setWeight(75);
         ButtonDataOd->setFont(font1);
-        QIcon icon;
-        icon.addFile(QString::fromUtf8(":/icon/calendar_icon_mini.png"), QSize(), QIcon::Normal, QIcon::Off);
-        ButtonDataOd->setIcon(icon);
+        QIcon icon8;
+        icon8.addFile(QString::fromUtf8(":/icon/calendar_icon_mini.png"), QSize(), QIcon::Normal, QIcon::Off);
+        ButtonDataOd->setIcon(icon8);
         ButtonDataOd->setCheckable(false);
         ButtonDataOd->setAutoDefault(false);
         ButtonDataOd->setFlat(true);
@@ -287,7 +309,7 @@ public:
         ButtonDataDo->setMaximumSize(QSize(20, 16777215));
         ButtonDataDo->setFont(font1);
         ButtonDataDo->setStyleSheet(QString::fromUtf8(""));
-        ButtonDataDo->setIcon(icon);
+        ButtonDataDo->setIcon(icon8);
         ButtonDataDo->setFlat(true);
 
         horizontalLayout_5->addWidget(ButtonDataDo);
@@ -346,26 +368,73 @@ public:
 
         ButtonWyszukaj = new QPushButton(tab);
         ButtonWyszukaj->setObjectName(QString::fromUtf8("ButtonWyszukaj"));
-        ButtonWyszukaj->setMinimumSize(QSize(0, 75));
+        ButtonWyszukaj->setMinimumSize(QSize(80, 38));
+        ButtonWyszukaj->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"color: white;\n"
+"background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #88d, stop: 0.1 #99e, stop: 0.49 #77c, stop: 0.5 #66b, stop: 1 #77c);\n"
+"border-width: 1px;\n"
+"border-color: #339;\n"
+"border-style: solid;\n"
+"border-radius: 7;\n"
+"padding: 3px;\n"
+"font-size: 10px;\n"
+"font-weight: bold;\n"
+"padding-left: 5px;\n"
+"\n"
+"min-width: 70px;\n"
+"min-height: 30px;\n"
+"\n"
+"}"));
+        QIcon icon9;
+        icon9.addFile(QString::fromUtf8(":/icon/Search-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        ButtonWyszukaj->setIcon(icon9);
+        ButtonWyszukaj->setIconSize(QSize(16, 16));
 
         horizontalLayout_11->addWidget(ButtonWyszukaj);
+
+        Button_edytuj = new QPushButton(tab);
+        Button_edytuj->setObjectName(QString::fromUtf8("Button_edytuj"));
+        Button_edytuj->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"color: white;\n"
+"background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #88d, stop: 0.1 #99e, stop: 0.49 #77c, stop: 0.5 #66b, stop: 1 #77c);\n"
+"border-width: 1px;\n"
+"border-color: #339;\n"
+"border-style: solid;\n"
+"border-radius: 7;\n"
+"padding: 3px;\n"
+"font-size: 10px;\n"
+"padding-left: 5px;\n"
+"padding-right: 5px;\n"
+"min-width: 50px;\n"
+"max-width: 50px;\n"
+"min-height: 13px;\n"
+"max-height: 13px;\n"
+"}"));
+        Button_edytuj->setIcon(icon6);
+
+        horizontalLayout_11->addWidget(Button_edytuj);
 
 
         gridLayout->addLayout(horizontalLayout_11, 3, 0, 1, 1);
 
         horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        gridLayout->addItem(horizontalSpacer_2, 3, 1, 1, 2);
+        gridLayout->addItem(horizontalSpacer_2, 3, 2, 1, 2);
 
         tableWidget = new MyTableWidget(tab);
         tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
+        tableWidget->setStyleSheet(QString::fromUtf8(""));
 
-        gridLayout->addWidget(tableWidget, 5, 0, 1, 3);
+        gridLayout->addWidget(tableWidget, 5, 0, 1, 4);
 
-        Button_edytuj = new QPushButton(tab);
-        Button_edytuj->setObjectName(QString::fromUtf8("Button_edytuj"));
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        gridLayout->addWidget(Button_edytuj, 4, 1, 1, 1);
+        gridLayout->addItem(horizontalSpacer_3, 1, 1, 1, 1);
+
+        label_username = new QLabel(tab);
+        label_username->setObjectName(QString::fromUtf8("label_username"));
+
+        gridLayout->addWidget(label_username, 0, 2, 1, 2);
 
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
@@ -387,6 +456,7 @@ public:
         Wydatnik->setMenuBar(menuBar);
         mainToolBar = new QToolBar(Wydatnik);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
+        mainToolBar->setFloatable(false);
         Wydatnik->addToolBar(Qt::TopToolBarArea, mainToolBar);
         statusBar = new QStatusBar(Wydatnik);
         statusBar->setObjectName(QString::fromUtf8("statusBar"));
@@ -400,6 +470,8 @@ public:
         menuPlik->addSeparator();
         menuPlik->addAction(actionZako_cz);
         menuEdycja->addAction(actionDodaj_wydatek);
+        menuEdycja->addAction(actionEdytuj);
+        menuEdycja->addAction(actionUsu_zaznaczone);
         menuEdycja->addSeparator();
         menuEdycja->addAction(actionZarejestruj);
         menuPomoc->addAction(actionO_wydatniku);
@@ -421,9 +493,9 @@ public:
         actionDodaj_wydatek->setText(QApplication::translate("Wydatnik", "Dodaj wydatek...", 0, QApplication::UnicodeUTF8));
         actionZarejestruj->setText(QApplication::translate("Wydatnik", "Zarejestruj...", 0, QApplication::UnicodeUTF8));
         actionO_wydatniku->setText(QApplication::translate("Wydatnik", "O wydatniku", 0, QApplication::UnicodeUTF8));
+        actionEdytuj->setText(QApplication::translate("Wydatnik", "Edytuj zaznaczone", 0, QApplication::UnicodeUTF8));
+        actionUsu_zaznaczone->setText(QApplication::translate("Wydatnik", "Usu\305\204 zaznaczone", 0, QApplication::UnicodeUTF8));
         label_13->setText(QApplication::translate("Wydatnik", "Wyszukaj transakcje", 0, QApplication::UnicodeUTF8));
-        label->setText(QApplication::translate("Wydatnik", "Rachunek", 0, QApplication::UnicodeUTF8));
-        rachunekNr->setText(QApplication::translate("Wydatnik", "numer itd", 0, QApplication::UnicodeUTF8));
         label_3->setText(QApplication::translate("Wydatnik", "Typ:", 0, QApplication::UnicodeUTF8));
         BoxTyp->clear();
         BoxTyp->insertItems(0, QStringList()
@@ -448,8 +520,9 @@ public:
         label_12->setText(QApplication::translate("Wydatnik", "Max.", 0, QApplication::UnicodeUTF8));
         ButtonWyszukaj->setText(QApplication::translate("Wydatnik", "Wyszukaj", 0, QApplication::UnicodeUTF8));
         Button_edytuj->setText(QApplication::translate("Wydatnik", "Edytuj", 0, QApplication::UnicodeUTF8));
+        label_username->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("Wydatnik", "Historia", 0, QApplication::UnicodeUTF8));
-        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("Wydatnik", "Tab 2", 0, QApplication::UnicodeUTF8));
+        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("Wydatnik", "Wykres", 0, QApplication::UnicodeUTF8));
         menuPlik->setTitle(QApplication::translate("Wydatnik", "Plik", 0, QApplication::UnicodeUTF8));
         menuEdycja->setTitle(QApplication::translate("Wydatnik", "Edycja", 0, QApplication::UnicodeUTF8));
         menuPomoc->setTitle(QApplication::translate("Wydatnik", "Pomoc", 0, QApplication::UnicodeUTF8));

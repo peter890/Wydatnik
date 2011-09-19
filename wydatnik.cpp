@@ -2,18 +2,20 @@
 #include "ui_wydatnik.h"
 #include <QInputDialog>
 
-bool Wydatnik::exists = 0;
+
 Wydatnik* Wydatnik::instance = 0;
 
 Wydatnik::Wydatnik(QWidget *parent) :
         QMainWindow(parent),
         ui(new Ui::Wydatnik)
 {
+
     QSettings settings(QApplication::applicationDirPath()+"/cfg/config.ini",QSettings::IniFormat);
     QTextCodec::setCodecForTr (QTextCodec::codecForName ("CP-1250"));
-    exists = 1;
-    userid = 1 ;
+
+    userid = -11 ;
     calendar = NULL;
+
 
 
 
@@ -41,24 +43,22 @@ Wydatnik::Wydatnik(QWidget *parent) :
     {
         this->show();
 
-        this->changeConnection(true); //zmien stan programu(zalogowany/niezalogowany)
+        //this->changeConnection(true); //zmien stan programu(zalogowany/niezalogowany)
+
     }
 
 }
 
 Wydatnik* Wydatnik::getInstance()
 {
-    if(Wydatnik::exists)
-        return instance;
-    else
-    {
+    if(Wydatnik::instance == 0)
         instance = new Wydatnik();
-        return instance;
-    }
+    return instance;
 }
 Wydatnik::~Wydatnik()
 {
     db->close();
+    delete db;
     delete ui;
     delete login;
 }
@@ -80,6 +80,11 @@ void Wydatnik::zaladujPolaczenia()
     connect(ui->ButtonDataDo,SIGNAL(clicked()),signalMapper,SLOT(map()));
 
     connect(signalMapper,SIGNAL(mapped(QWidget*)),SLOT(ustawDate(QWidget*)));
+    connect(ui->Button_edytuj, SIGNAL(clicked()), this, SLOT(edytuj()));
+
+
+
+    ui->actionUsu_zaznaczone->setDisabled(true);
 }
 void Wydatnik::zaloguj()
 {
@@ -166,9 +171,9 @@ void Wydatnik::exec(QString _query)
 
 
     MyCheckBox* box;
-    if(signalMapper)
-        delete signalMapper;
-signalMapper = new QSignalMapper(this);
+    //if(signalMapper2)
+       // delete signalMapper2;
+signalMapper2 = new QSignalMapper(this);
 
 
     for(int i=0; i< zapytanie.numRowsAffected(); ++i)
@@ -178,12 +183,13 @@ signalMapper = new QSignalMapper(this);
 
         ui->tableWidget->wstawWidget(i,0,box);
         //connect(box,SIGNAL(clicked()),signalMapper,SLOT(map()));
-        signalMapper->setMapping(box,box);
-        connect(box,SIGNAL(clicked()),signalMapper,SLOT(map()));
+        signalMapper2->setMapping(box,box);
+        connect(box,SIGNAL(clicked()),signalMapper2,SLOT(map()));
 
     }
-    connect(signalMapper,SIGNAL(mapped(QWidget*)),this,SLOT(zaznaczenie(QWidget*)));
-    connect(ui->Button_edytuj, SIGNAL(clicked()), this, SLOT(edytuj()));
+    connect(signalMapper2,SIGNAL(mapped(QWidget*)),this,SLOT(zaznaczenie(QWidget*)));
+
+
 
 }
 void Wydatnik::changeConnection(bool _connected)
@@ -203,6 +209,7 @@ void Wydatnik::zmienStan(bool _stan)
         ui->menuPlik->insertAction(ui->actionWyloguj,ui->actionZaloguj);
         ui->menuPlik->removeAction(ui->actionWyloguj);
         ui->statusBar->showMessage("Zalogowany jako: niezalogowany" );
+        ui->label_username->setText("Zalogowany jako: niezalogowany" );
         Obserwatorzy.clear();
 
     }
@@ -210,13 +217,15 @@ void Wydatnik::zmienStan(bool _stan)
     {
         ui->menuPlik->insertAction(ui->actionZaloguj,ui->actionWyloguj);
         ui->menuPlik->removeAction(ui->actionZaloguj);
-        QString login;
+
         //db->open();
-        QSqlQuery zapytanie("SELECT * FROM users WHERE id='"+login.setNum(userid)+"';");
+        QSqlQuery zapytanie("SELECT * FROM users WHERE id='"+userName.setNum(userid)+"';");
         while(zapytanie.next())
         {
-            login = zapytanie.value(1).toString();
-            ui->statusBar->showMessage("Zalogowany jako: " + login);
+            userName = zapytanie.value(1).toString();
+
+            ui->statusBar->showMessage("Zalogowany jako:  < " + userName+" >");
+            ui->label_username->setText("Zalogowany jako: < " + userName+" >");
         }
 
         QDate dataOd, dataDo;
@@ -253,7 +262,7 @@ void Wydatnik::zaladujDane(QSqlQuery zapytanie)
     dane.clear();
     while(zapytanie.next())
     {
-        dane.push_back(new Dane(zapytanie.value(2).toString().remove(0,5),zapytanie.value(1).toDouble(),zapytanie.value(3).toInt()));
+        dane.push_back(new Dane(zapytanie.value(3).toString().remove(0,5),zapytanie.value(2).toDouble(),zapytanie.value(4).toInt()));
     }
 
 
@@ -296,7 +305,7 @@ void Wydatnik::wyszukaj()
         zapytanie.append(" AND kwota <= '"+ui->EditMax->text()+"'");
     }
 
-    zapytanie.append(";");
+    zapytanie.append(" ORDER BY data;");
 
     ui->sqledit->setText(zapytanie);
     this->exec(zapytanie);
@@ -307,6 +316,12 @@ void Wydatnik::wyszukaj()
 }
 void Wydatnik::ustawDate(QWidget* o)
 {
+    if(calendar != NULL && calendar->isActiveWindow())
+    {
+        calendar->close();
+        calendar = NULL;
+        return;
+    }
     QDate dataTmp;
     QDateEdit* dateEdit = dynamic_cast<QDateEdit*>(o);
 
@@ -322,13 +337,7 @@ void Wydatnik::ustawDate(QWidget* o)
 
 
 }
-//void Wydatnik::mousePressEvent(QMouseEvent *event)
-//{
-//    if(calendar->isVisible())
-//    {
-//            calendar->close();
-//    }
-//}
+
 void Wydatnik::RefreshData(Obserwowany *o)
 {
     QList<Obserwator*>::iterator it;
@@ -367,10 +376,11 @@ void Wydatnik::zaznaczenie(QWidget* w)
 }
 void Wydatnik::edytuj()
 {
+    if(lista_zaznaczone.empty())
+        return;
     qDebug() << "edytuj: " << lista_zaznaczone.size() << "\n";
     QString tmp;
     MyCheckBox* myBox;
-
     for(int i=0; i < lista_zaznaczone.size(); i++)
     {
         myBox = dynamic_cast<MyCheckBox*>(lista_zaznaczone.at(i));

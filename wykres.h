@@ -46,6 +46,7 @@ class Dane
 public:
     Dane(QString _date, double _value, bool _wydatek);
     Dane(Dane*);
+    Dane(QStringList _lista){lista = new QStringList(_lista);}
     QString getData();
     double getValue();
     bool getWydatek();
@@ -54,6 +55,7 @@ protected:
     QString data;
     double wartosc;
     bool wydatek;
+    QStringList* lista;
 
 
 };

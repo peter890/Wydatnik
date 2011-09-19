@@ -35,7 +35,7 @@
 using namespace std;
 
 namespace Ui {
-    class Wydatnik;
+class Wydatnik;
 }
 class Login;
 class Registration;
@@ -56,6 +56,7 @@ public:
     int getUserid();
     QSqlDatabase* db;
     QSignalMapper* signalMapper;
+    QSignalMapper* signalMapper2;
     bool connectDB(QString _hostname, QString _username, QString _password, QString _dbname);
     void DBError(QSqlError _error);
     void Error(QString _error);
@@ -73,7 +74,6 @@ public:
 private:
     Ui::Wydatnik *ui;
     explicit Wydatnik(QWidget *parent = 0);
-    static bool exists;
     static Wydatnik* instance;
     QList<Obserwator*>Obserwatorzy;
 
@@ -81,6 +81,7 @@ private:
     bool connected;
     QSqlQueryModel *queryModel;
     Login* login;
+    QString userName;
     Registration* registration;
     Rozchody* rozchody;
     vector<Dane*> dane;
@@ -89,6 +90,7 @@ private:
     QStringList lista;
     QList<QWidget*> lista_zaznaczone; //lista ktora przechowuje informacje o zaznaczonych MyCheckBoxach. mozna wysciagnac info ktory wiersz i jakie id z mysql.
     void zaladujPolaczenia();
+
 
 
 

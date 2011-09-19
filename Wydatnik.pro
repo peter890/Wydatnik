@@ -42,3 +42,5 @@ CONFIG += libqsqlmysql4
 
 RESOURCES += \
     icons/ikony.qrc
+
+OTHER_FILES +=

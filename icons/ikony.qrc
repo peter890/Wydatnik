@@ -1,5 +1,24 @@
 <RCC>
     <qresource prefix="/icon">
         <file>calendar_icon_mini.png</file>
+        <file>button_ok.png</file>
+        <file>calendar.png</file>
+        <file>calendar_icon.jpg</file>
+        <file>Calendar-icon.png</file>
+        <file>Key-icon.png</file>
+        <file>Log-Out-icon.png</file>
+        <file>Actions-session-exit-icon.png</file>
+        <file>Search-icon.png</file>
+        <file>Check-icon.png</file>
+        <file>Delete-icon.png</file>
+        <file>Remove-icon.png</file>
+        <file>Cancel-icon.png</file>
+        <file>Add-icon.png</file>
+        <file>Burn-Disk-icon.png</file>
+        <file>Actions-help-about-icon.png</file>
+        <file>Actions-document-edit-icon.png</file>
+    </qresource>
+    <qresource prefix="/img">
+        <file>button_ok.png</file>
     </qresource>
 </RCC>
