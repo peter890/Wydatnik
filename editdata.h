@@ -24,6 +24,7 @@ public:
 private:
     Ui::EditData *ui;
     QString id;
+    QStringList backup;
 private slots:
     void edit();
     void del();

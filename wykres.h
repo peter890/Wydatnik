@@ -11,6 +11,7 @@
 #include <QMessageBox>
 #include "obserwator.h"
 #include "obserwowany.h"
+#include "pamiatka.h"
 using namespace std;
 class Dane;
 class Wykres : public QWidget, public Obserwator

@@ -90,6 +90,7 @@ private:
     QStringList lista;
     QList<QWidget*> lista_zaznaczone; //lista ktora przechowuje informacje o zaznaczonych MyCheckBoxach. mozna wysciagnac info ktory wiersz i jakie id z mysql.
     void zaladujPolaczenia();
+    vector<Pamiatka*> historia; //vektor ktory zapamietuje ostatnio wykonanie operacje(polecenia odwrotne do wykonanych, tak zeby dało sie odwrócić czynnosc)
 
 
 
@@ -104,6 +105,9 @@ public slots:
     void ustawDate(QWidget* o);
     void RefreshData(Obserwowany *o);
     void zaznaczenie(QWidget*);
+    void ZapiszStan(QString);
+    void OdtworzStan();
+    void aktualizujSaldo();
 private slots:
 
     void changeConnection(bool _connected);

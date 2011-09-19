@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     wykres.cpp \
     mytablewidget.cpp \
     mycheckbox.cpp \
-    editdata.cpp
+    editdata.cpp \
+    pamiatka.cpp
 
 HEADERS  += wydatnik.h \
     login.h \
@@ -31,7 +32,8 @@ HEADERS  += wydatnik.h \
     mylabel.h \
     mytablewidget.h \
     editdata.h \
-    mycheckbox.h
+    mycheckbox.h \
+    pamiatka.h
 
 FORMS    += wydatnik.ui \
     login.ui \

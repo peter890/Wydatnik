@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'editdata.h'
 **
-** Created: Mon Sep 19 12:08:42 2011
+** Created: Mon Sep 19 14:19:57 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.2)
 **
 ** WARNING! All changes made in this file will be lost!

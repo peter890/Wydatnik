@@ -13,8 +13,10 @@ Wydatnik::Wydatnik(QWidget *parent) :
     QSettings settings(QApplication::applicationDirPath()+"/cfg/config.ini",QSettings::IniFormat);
     QTextCodec::setCodecForTr (QTextCodec::codecForName ("CP-1250"));
 
-    userid = -11 ;
+    userid = 0 ;
     calendar = NULL;
+    changedConnection(false);
+
 
 
 
@@ -46,7 +48,7 @@ Wydatnik::Wydatnik(QWidget *parent) :
         //this->changeConnection(true); //zmien stan programu(zalogowany/niezalogowany)
 
     }
-
+wyszukaj();
 }
 
 Wydatnik* Wydatnik::getInstance()
@@ -78,9 +80,10 @@ void Wydatnik::zaladujPolaczenia()
     signalMapper->setMapping(ui->ButtonDataDo,ui->dateEditDo);
     connect(ui->ButtonDataOd,SIGNAL(clicked()),signalMapper,SLOT(map()));
     connect(ui->ButtonDataDo,SIGNAL(clicked()),signalMapper,SLOT(map()));
-
     connect(signalMapper,SIGNAL(mapped(QWidget*)),SLOT(ustawDate(QWidget*)));
-    connect(ui->Button_edytuj, SIGNAL(clicked()), this, SLOT(edytuj()));
+
+
+    connect(ui->actionCofnij, SIGNAL(triggered()), this, SLOT(OdtworzStan()));
 
 
 
@@ -166,7 +169,6 @@ void Wydatnik::exec(QString _query)
 
     ui->tableWidget->sqlQuery(zapytanie);
     ui->tableWidget->setHorizontalHeaderLabel(0,"zaznaczenie");
-    //ui->tableWidget->hideColumn(ui->tableWidget->columnCount()-1);
 
 
 
@@ -188,6 +190,8 @@ signalMapper2 = new QSignalMapper(this);
 
     }
     connect(signalMapper2,SIGNAL(mapped(QWidget*)),this,SLOT(zaznaczenie(QWidget*)));
+
+    connect(ui->Button_edytuj, SIGNAL(clicked()), this, SLOT(edytuj()));
 
 
 
@@ -391,12 +395,11 @@ void Wydatnik::edytuj()
 
             if(ui->tableWidget->item(myBox->getRowNum(),k))
             {
-                qDebug() << ui->tableWidget->item(myBox->getRowNum(),k)->text();
+                //qDebug() << ui->tableWidget->item(myBox->getRowNum(),k)->text();
                 lista << ui->tableWidget->item(myBox->getRowNum(),k)->text();
                 myBox->setChecked(false);
 
             }
-
 
         }
         lista_zaznaczone.removeOne(myBox);
@@ -404,7 +407,24 @@ void Wydatnik::edytuj()
         editData->show();
 
     }
+}
+void Wydatnik::ZapiszStan(QString zapytanie)
+{
+    historia.push_back(new Pamiatka(zapytanie));
+    ui->actionCofnij->setDisabled(false);
 
+}
+void Wydatnik::OdtworzStan()
+{
+    db->exec(historia[historia.size()-1]->OdtworzStan());
+    qDebug() << "cos" << historia[historia.size()-1]->OdtworzStan();
+   delete historia[historia.size()-1];
+    if(historia.empty())
+        ui->actionCofnij->setDisabled(true);
 
-
+}
+void Wydatnik::aktualizujSaldo()
+{
+    QString temp;
+    Wydatnik::getInstance()->db->exec("UPDATE users SET saldo = (SELECT SUM(kwota) FROM expenses WHERE userId="+temp.setNum(Wydatnik::getInstance()->getUserid())+" AND wydatek = 0) - (SELECT SUM(kwota) FROM expenses WHERE userId="+temp.setNum(Wydatnik::getInstance()->getUserid())+" AND wydatek = 1) WHERE id = "+temp.setNum(Wydatnik::getInstance()->getUserid())+";");
 }

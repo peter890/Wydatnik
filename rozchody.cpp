@@ -41,32 +41,21 @@ void Rozchody::dodaj()
     if(Wydatnik::getInstance()->db->open() && Wydatnik::getInstance()->zalogowany())
     {
         int userid = Wydatnik::getInstance()->getUserid();
-        int saldo=0;
-        QSqlQuery pobieranie("SELECT saldo FROM users WHERE id='"+temp.setNum(userid)+"';");
-        while(pobieranie.next())
-        {
-            saldo = pobieranie.value(0).toDouble();
-        }
-        QString Saldo;
 
 
 
+
+
+ui->label_5->setText(temp.setNum(ui->edit_kwota->text().toFloat()));
         if(ui->comboBox->currentIndex() == 0) //wychody
         {
-            Saldo.setNum(saldo - ui->edit_kwota->text().toDouble());
-
-             ui->label_5->setText(temp.setNum(ui->edit_kwota->text().toFloat()));
-            pobieranie.exec("INSERT INTO expenses(userID, nazwa, kwota, data,opis,wydatek ) VALUES ('"+ temp.setNum(userid) +"','"+ui->edit_nazwa->text()+"','"+ui->label_5->text()+"','"+ui->dateEdit->date().toString("yyyy-MM-dd")+"','"+ui->edit_opis->text()+"','1')");
-            pobieranie.exec("UPDATE users SET saldo="+ Saldo +" WHERE id='"+temp.setNum(userid) +"'; ");
-
+            Wydatnik::getInstance()->db->exec("INSERT INTO expenses(userID, nazwa, kwota, data,opis,wydatek ) VALUES ('"+ temp.setNum(userid) +"','"+ui->edit_nazwa->text()+"','"+ui->label_5->text()+"','"+ui->dateEdit->date().toString("yyyy-MM-dd")+"','"+ui->edit_opis->text()+"','1')");
         }
         if(ui->comboBox->currentIndex() == 1) //przychody
         {
-            Saldo.setNum(saldo + ui->edit_kwota->text().toDouble());
-            ui->label_5->setText(temp.setNum(ui->edit_kwota->text().toFloat()));
-           pobieranie.exec("INSERT INTO expenses(userID, nazwa, kwota, data,opis,wydatek ) VALUES ('"+ temp.setNum(userid) +"','"+ui->edit_nazwa->text()+"','"+ui->label_5->text()+"','"+ui->dateEdit->date().toString("yyyy-MM-dd")+"','"+ui->edit_opis->text()+"','0')");
-           pobieranie.exec("UPDATE users SET saldo="+ Saldo +" WHERE id='"+temp.setNum(userid) +"'; ");
+           Wydatnik::getInstance()->db->exec("INSERT INTO expenses(userID, nazwa, kwota, data,opis,wydatek ) VALUES ('"+ temp.setNum(userid) +"','"+ui->edit_nazwa->text()+"','"+ui->label_5->text()+"','"+ui->dateEdit->date().toString("yyyy-MM-dd")+"','"+ui->edit_opis->text()+"','0')");
         }
+         Wydatnik::getInstance()->aktualizujSaldo();
 
         this->close();
         Wydatnik::getInstance()->RefreshData(Wydatnik::getInstance());

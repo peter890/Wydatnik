@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'wydatnik.ui'
 **
-** Created: Mon Sep 19 12:08:07 2011
+** Created: Mon Sep 19 14:19:32 2011
 **      by: Qt User Interface Compiler version 4.7.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -47,6 +47,7 @@ public:
     QAction *actionO_wydatniku;
     QAction *actionEdytuj;
     QAction *actionUsu_zaznaczone;
+    QAction *actionCofnij;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout_2;
     QLineEdit *sqledit;
@@ -147,6 +148,8 @@ public:
         QIcon icon7;
         icon7.addFile(QString::fromUtf8(":/icon/Delete-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionUsu_zaznaczone->setIcon(icon7);
+        actionCofnij = new QAction(Wydatnik);
+        actionCofnij->setObjectName(QString::fromUtf8("actionCofnij"));
         centralWidget = new QWidget(Wydatnik);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         centralWidget->setStyleSheet(QString::fromUtf8("\n"
@@ -474,6 +477,7 @@ public:
         menuEdycja->addAction(actionUsu_zaznaczone);
         menuEdycja->addSeparator();
         menuEdycja->addAction(actionZarejestruj);
+        menuEdycja->addAction(actionCofnij);
         menuPomoc->addAction(actionO_wydatniku);
 
         retranslateUi(Wydatnik);
@@ -495,6 +499,7 @@ public:
         actionO_wydatniku->setText(QApplication::translate("Wydatnik", "O wydatniku", 0, QApplication::UnicodeUTF8));
         actionEdytuj->setText(QApplication::translate("Wydatnik", "Edytuj zaznaczone", 0, QApplication::UnicodeUTF8));
         actionUsu_zaznaczone->setText(QApplication::translate("Wydatnik", "Usu\305\204 zaznaczone", 0, QApplication::UnicodeUTF8));
+        actionCofnij->setText(QApplication::translate("Wydatnik", "Cofnij", 0, QApplication::UnicodeUTF8));
         label_13->setText(QApplication::translate("Wydatnik", "Wyszukaj transakcje", 0, QApplication::UnicodeUTF8));
         label_3->setText(QApplication::translate("Wydatnik", "Typ:", 0, QApplication::UnicodeUTF8));
         BoxTyp->clear();

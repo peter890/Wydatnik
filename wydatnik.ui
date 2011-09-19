@@ -459,6 +459,7 @@ max-height: 13px;
     <addaction name="actionUsu_zaznaczone"/>
     <addaction name="separator"/>
     <addaction name="actionZarejestruj"/>
+    <addaction name="actionCofnij"/>
    </widget>
    <widget class="QMenu" name="menuPomoc">
     <property name="title">
@@ -555,6 +556,11 @@ max-height: 13px;
    </property>
    <property name="text">
     <string>Usuń zaznaczone</string>
+   </property>
+  </action>
+  <action name="actionCofnij">
+   <property name="text">
+    <string>Cofnij</string>
    </property>
   </action>
  </widget>
