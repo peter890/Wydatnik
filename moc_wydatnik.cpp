@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'wydatnik.h'
 **
-** Created: Mon Sep 19 14:19:48 2011
+** Created: Mon Sep 19 18:55:12 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -44,9 +44,9 @@ static const uint qt_meta_data_Wydatnik[] = {
      164,    9,    9,    9, 0x0a,
      184,    9,    9,    9, 0x0a,
      198,    9,    9,    9, 0x0a,
-     216,   10,    9,    9, 0x08,
-     239,    9,    9,    9, 0x08,
-     255,    9,    9,    9, 0x08,
+     216,    9,    9,    9, 0x0a,
+     227,   10,    9,    9, 0x08,
+     250,    9,    9,    9, 0x08,
      266,    9,    9,    9, 0x08,
 
        0        // eod
@@ -59,8 +59,8 @@ static const char qt_meta_stringdata_Wydatnik[] = {
     "RefreshData(Obserwowany*)\0"
     "zaznaczenie(QWidget*)\0ZapiszStan(QString)\0"
     "OdtworzStan()\0aktualizujSaldo()\0"
-    "changeConnection(bool)\0zmienStan(bool)\0"
-    "wyszukaj()\0edytuj()\0"
+    "wyszukaj()\0changeConnection(bool)\0"
+    "zmienStan(bool)\0edytuj()\0"
 };
 
 const QMetaObject Wydatnik::staticMetaObject = {
@@ -105,9 +105,9 @@ int Wydatnik::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 8: ZapiszStan((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 9: OdtworzStan(); break;
         case 10: aktualizujSaldo(); break;
-        case 11: changeConnection((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 12: zmienStan((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 13: wyszukaj(); break;
+        case 11: wyszukaj(); break;
+        case 12: changeConnection((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 13: zmienStan((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 14: edytuj(); break;
         default: ;
         }

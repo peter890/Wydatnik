@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Widatnik - logowanie</string>
+   <string>Wydatnik - logowanie</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QLineEdit {
@@ -87,6 +87,9 @@ font-size: 15px;
       <height>20</height>
      </rect>
     </property>
+    <property name="focusPolicy">
+     <enum>Qt::TabFocus</enum>
+    </property>
     <property name="text">
      <string>Anuluj</string>
     </property>
@@ -133,12 +136,12 @@ font-size: 15px;
      <rect>
       <x>126</x>
       <y>111</y>
-      <width>81</width>
+      <width>71</width>
       <height>20</height>
      </rect>
     </property>
     <property name="focusPolicy">
-     <enum>Qt::ClickFocus</enum>
+     <enum>Qt::TabFocus</enum>
     </property>
     <property name="contextMenuPolicy">
      <enum>Qt::NoContextMenu</enum>
@@ -152,6 +155,48 @@ font-size: 15px;
     </property>
     <property name="autoDefault">
      <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>140</y>
+      <width>95</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>7</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Zapamiętaj mnie</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_register">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>150</y>
+      <width>71</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#label_register{
+	font-size: 10px;
+	font-weight: normal;}
+#label_register:hover{
+color: red;
+}</string>
+    </property>
+    <property name="text">
+     <string>zarejestruj się...</string>
     </property>
    </widget>
   </widget>

@@ -4,11 +4,15 @@
 #include <QDate>
 
 Rozchody::Rozchody(QWidget *parent) :
-        QMainWindow(parent),
-        ui(new Ui::Rozchody)
+    QMainWindow(parent),
+    ui(new Ui::Rozchody)
 {
     ui->setupUi(this);
     this->setMaximumSize(367,276);
+    QRect frect = frameGeometry();
+    frect.moveCenter(QDesktopWidget().availableGeometry().center());
+    move(frect.topLeft());
+
 
     ui->edit_kwota->setValidator(new QDoubleValidator(this));
     //ui->edit_data->setText(QDate::currentDate().toString("yyyy-MM-dd"));
@@ -22,7 +26,7 @@ Rozchody::Rozchody(QWidget *parent) :
     connect(ui->buttonCalendar,SIGNAL(clicked()),signalMapper,SLOT(map()));
     connect(signalMapper,SIGNAL(mapped(QWidget*)),SLOT(ustawDate(QWidget*)));
 
-    //connect(ui->button_dodaj,SIGNAL(clicked()),Wydatnik::getInstance(),SLOT(RefreshData()));
+
 }
 
 Rozchody::~Rozchody()
@@ -38,27 +42,24 @@ void Rozchody::dodaj()
     {
         Wydatnik::getInstance()->zaloguj();
     }
-    if(Wydatnik::getInstance()->db->open() && Wydatnik::getInstance()->zalogowany())
+    if(Wydatnik::getInstance()->db->open())
     {
         int userid = Wydatnik::getInstance()->getUserid();
-
-
-
-
-
-ui->label_5->setText(temp.setNum(ui->edit_kwota->text().toFloat()));
+        ui->label_5->setText(temp.setNum(ui->edit_kwota->text().toFloat()));
         if(ui->comboBox->currentIndex() == 0) //wychody
         {
             Wydatnik::getInstance()->db->exec("INSERT INTO expenses(userID, nazwa, kwota, data,opis,wydatek ) VALUES ('"+ temp.setNum(userid) +"','"+ui->edit_nazwa->text()+"','"+ui->label_5->text()+"','"+ui->dateEdit->date().toString("yyyy-MM-dd")+"','"+ui->edit_opis->text()+"','1')");
+
+            qDebug()<< "INSERT INTO expenses(userID, nazwa, kwota, data,opis,wydatek ) VALUES ('"+ temp.setNum(userid) +"','"+ui->edit_nazwa->text()+"','"+ui->label_5->text()+"','"+ui->dateEdit->date().toString("yyyy-MM-dd")+"','"+ui->edit_opis->text()+"','1')";
         }
         if(ui->comboBox->currentIndex() == 1) //przychody
         {
-           Wydatnik::getInstance()->db->exec("INSERT INTO expenses(userID, nazwa, kwota, data,opis,wydatek ) VALUES ('"+ temp.setNum(userid) +"','"+ui->edit_nazwa->text()+"','"+ui->label_5->text()+"','"+ui->dateEdit->date().toString("yyyy-MM-dd")+"','"+ui->edit_opis->text()+"','0')");
+            Wydatnik::getInstance()->db->exec("INSERT INTO expenses(userID, nazwa, kwota, data,opis,wydatek ) VALUES ('"+ temp.setNum(userid) +"','"+ui->edit_nazwa->text()+"','"+ui->label_5->text()+"','"+ui->dateEdit->date().toString("yyyy-MM-dd")+"','"+ui->edit_opis->text()+"','0')");
         }
-         Wydatnik::getInstance()->aktualizujSaldo();
-
+        Wydatnik::getInstance()->aktualizujSaldo();
+        Wydatnik::getInstance()->wyszukaj();
         this->close();
-        Wydatnik::getInstance()->RefreshData(Wydatnik::getInstance());
+
     }
     else
     {
@@ -70,7 +71,7 @@ void Rozchody::ustawDate(QWidget* o)
 {
 
 
-QDate dataTmp;
+    QDate dataTmp;
     QDateEdit* dateEdit = dynamic_cast<QDateEdit*>(o);
 
     QCalendarWidget *calendar = new QCalendarWidget();

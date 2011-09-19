@@ -20,6 +20,8 @@ public:
 
 
     ~EditData();
+protected:
+    virtual void keyPressEvent(QKeyEvent *);
 
 private:
     Ui::EditData *ui;
@@ -28,6 +30,7 @@ private:
 private slots:
     void edit();
     void del();
+    bool confirm();
 };
 
 #endif // EDITDATA_H

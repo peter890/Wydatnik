@@ -7,10 +7,13 @@ Registration::Registration(QWidget *parent) :
         ui(new Ui::Registration)
 {
     ui->setupUi(this);
+    QRect frect = frameGeometry();
+    frect.moveCenter(QDesktopWidget().availableGeometry().center());
+    move(frect.topLeft());
+
     this->setMaximumSize(406,220);
     ui->edit_haslo->setEchoMode(QLineEdit::Password);
     ui->edit_haslo2->setEchoMode(QLineEdit::Password);
-    //ui->button_register->setEnabled(true);
 
     connect(ui->edit_haslo2,SIGNAL(textEdited(QString)),this,SLOT(passwdCmp()));
     connect(ui->edit_email,SIGNAL(textEdited(QString)),this,SLOT(checkEmail()));

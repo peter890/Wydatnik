@@ -92,7 +92,8 @@ private:
     void zaladujPolaczenia();
     vector<Pamiatka*> historia; //vektor ktory zapamietuje ostatnio wykonanie operacje(polecenia odwrotne do wykonanych, tak zeby dało sie odwrócić czynnosc)
 
-
+protected:
+    virtual void keyPressEvent(QKeyEvent *);
 
 
 
@@ -108,11 +109,12 @@ public slots:
     void ZapiszStan(QString);
     void OdtworzStan();
     void aktualizujSaldo();
+    void wyszukaj();
 private slots:
 
     void changeConnection(bool _connected);
     void zmienStan(bool);
-    void wyszukaj();
+
     void edytuj();
 
 signals:

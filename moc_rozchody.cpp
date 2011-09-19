@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'rozchody.h'
 **
-** Created: Mon Sep 19 14:19:55 2011
+** Created: Mon Sep 19 18:55:18 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.2)
 **
 ** WARNING! All changes made in this file will be lost!

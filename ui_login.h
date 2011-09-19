@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'login.ui'
 **
-** Created: Mon Sep 19 11:07:30 2011
+** Created: Mon Sep 19 19:50:42 2011
 **      by: Qt User Interface Compiler version 4.7.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -14,6 +14,7 @@
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
+#include <QtGui/QCheckBox>
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
 #include <QtGui/QLineEdit>
@@ -33,6 +34,8 @@ public:
     QLineEdit *edit_login;
     QLabel *label_haslo;
     QPushButton *button_zaloguj;
+    QCheckBox *checkBox;
+    QLabel *label_register;
 
     void setupUi(QMainWindow *Login)
     {
@@ -86,6 +89,7 @@ public:
         button_anuluj = new QPushButton(centralwidget);
         button_anuluj->setObjectName(QString::fromUtf8("button_anuluj"));
         button_anuluj->setGeometry(QRect(241, 111, 71, 20));
+        button_anuluj->setFocusPolicy(Qt::TabFocus);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/icon/Cancel-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         button_anuluj->setIcon(icon);
@@ -100,13 +104,29 @@ public:
         label_haslo->setGeometry(QRect(40, 68, 51, 23));
         button_zaloguj = new QPushButton(centralwidget);
         button_zaloguj->setObjectName(QString::fromUtf8("button_zaloguj"));
-        button_zaloguj->setGeometry(QRect(126, 111, 81, 20));
-        button_zaloguj->setFocusPolicy(Qt::ClickFocus);
+        button_zaloguj->setGeometry(QRect(126, 111, 71, 20));
+        button_zaloguj->setFocusPolicy(Qt::TabFocus);
         button_zaloguj->setContextMenuPolicy(Qt::NoContextMenu);
         QIcon icon1;
         icon1.addFile(QString::fromUtf8(":/icon/Check-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         button_zaloguj->setIcon(icon1);
         button_zaloguj->setAutoDefault(false);
+        checkBox = new QCheckBox(centralwidget);
+        checkBox->setObjectName(QString::fromUtf8("checkBox"));
+        checkBox->setEnabled(false);
+        checkBox->setGeometry(QRect(30, 140, 95, 16));
+        QFont font;
+        font.setPointSize(7);
+        checkBox->setFont(font);
+        label_register = new QLabel(centralwidget);
+        label_register->setObjectName(QString::fromUtf8("label_register"));
+        label_register->setGeometry(QRect(260, 150, 71, 16));
+        label_register->setStyleSheet(QString::fromUtf8("#label_register{\n"
+"	font-size: 10px;\n"
+"	font-weight: normal;}\n"
+"#label_register:hover{\n"
+"color: red;\n"
+"}"));
         Login->setCentralWidget(centralwidget);
 
         retranslateUi(Login);
@@ -116,11 +136,13 @@ public:
 
     void retranslateUi(QMainWindow *Login)
     {
-        Login->setWindowTitle(QApplication::translate("Login", "Widatnik - logowanie", 0, QApplication::UnicodeUTF8));
+        Login->setWindowTitle(QApplication::translate("Login", "Wydatnik - logowanie", 0, QApplication::UnicodeUTF8));
         label_login->setText(QApplication::translate("Login", "Login:", 0, QApplication::UnicodeUTF8));
         button_anuluj->setText(QApplication::translate("Login", "Anuluj", 0, QApplication::UnicodeUTF8));
         label_haslo->setText(QApplication::translate("Login", "Has\305\202o", 0, QApplication::UnicodeUTF8));
         button_zaloguj->setText(QApplication::translate("Login", "Zaloguj", 0, QApplication::UnicodeUTF8));
+        checkBox->setText(QApplication::translate("Login", "Zapami\304\231taj mnie", 0, QApplication::UnicodeUTF8));
+        label_register->setText(QApplication::translate("Login", "zarejestruj si\304\231...", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

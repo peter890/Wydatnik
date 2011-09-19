@@ -21,6 +21,7 @@ public:
 private:
     Ui::Login *ui;
 protected:
+    virtual void keyPressEvent(QKeyEvent *);
 
 private slots:
     void zaloguj();

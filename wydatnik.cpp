@@ -6,16 +6,21 @@
 Wydatnik* Wydatnik::instance = 0;
 
 Wydatnik::Wydatnik(QWidget *parent) :
-        QMainWindow(parent),
-        ui(new Ui::Wydatnik)
+    QMainWindow(parent),
+    ui(new Ui::Wydatnik)
 {
 
     QSettings settings(QApplication::applicationDirPath()+"/cfg/config.ini",QSettings::IniFormat);
     QTextCodec::setCodecForTr (QTextCodec::codecForName ("CP-1250"));
 
-    userid = 0 ;
+    userid = -1 ;
     calendar = NULL;
     changedConnection(false);
+    QRect frect = frameGeometry();
+    frect.moveCenter(QDesktopWidget().availableGeometry().center());
+    move(frect.topLeft());
+    show();
+
 
 
 
@@ -35,20 +40,16 @@ Wydatnik::Wydatnik(QWidget *parent) :
 
     zaladujPolaczenia();
 
+
     //connectDB("localhost","root","","wydatnik");
 
     if(!connectDB("db4free.net","compal","kopek2705","wydatnik"))
     {
         DBError(db->lastError());
     }
-    else
-    {
-        this->show();
+zaloguj();
 
-        //this->changeConnection(true); //zmien stan programu(zalogowany/niezalogowany)
 
-    }
-wyszukaj();
 }
 
 Wydatnik* Wydatnik::getInstance()
@@ -88,6 +89,24 @@ void Wydatnik::zaladujPolaczenia()
 
 
     ui->actionUsu_zaznaczone->setDisabled(true);
+    ui->actionCofnij->setDisabled(true);
+
+
+}
+void Wydatnik::keyPressEvent(QKeyEvent *k)
+{
+
+    switch(k->key())
+    {
+    case Qt::Key_Insert:
+        dodajWydatek();
+        break;
+     case 16777220:
+        wyszukaj();
+        break;
+
+    }
+
 }
 void Wydatnik::zaloguj()
 {
@@ -173,9 +192,7 @@ void Wydatnik::exec(QString _query)
 
 
     MyCheckBox* box;
-    //if(signalMapper2)
-       // delete signalMapper2;
-signalMapper2 = new QSignalMapper(this);
+    signalMapper2 = new QSignalMapper(this);
 
 
     for(int i=0; i< zapytanie.numRowsAffected(); ++i)
@@ -184,16 +201,12 @@ signalMapper2 = new QSignalMapper(this);
         box = new MyCheckBox(zapytanie.value(0).toInt(),i,0,ui->tableWidget);
 
         ui->tableWidget->wstawWidget(i,0,box);
-        //connect(box,SIGNAL(clicked()),signalMapper,SLOT(map()));
         signalMapper2->setMapping(box,box);
         connect(box,SIGNAL(clicked()),signalMapper2,SLOT(map()));
 
     }
     connect(signalMapper2,SIGNAL(mapped(QWidget*)),this,SLOT(zaznaczenie(QWidget*)));
-
     connect(ui->Button_edytuj, SIGNAL(clicked()), this, SLOT(edytuj()));
-
-
 
 }
 void Wydatnik::changeConnection(bool _connected)
@@ -208,13 +221,13 @@ void Wydatnik::zmienStan(bool _stan)
 {
     if(!_stan) //false(niezalogowany)
     {
-
         exec("Select nazwa, kwota, data, opis FROM expenses  WHERE  userID = '-1';");
         ui->menuPlik->insertAction(ui->actionWyloguj,ui->actionZaloguj);
         ui->menuPlik->removeAction(ui->actionWyloguj);
         ui->statusBar->showMessage("Zalogowany jako: niezalogowany" );
         ui->label_username->setText("Zalogowany jako: niezalogowany" );
         Obserwatorzy.clear();
+        userid = 0;
 
     }
     else//true (zalogowany)
@@ -239,11 +252,11 @@ void Wydatnik::zmienStan(bool _stan)
         ui->dateEditOd->setDate(dataOd);
         ui->dateEditDo->setDate(dataDo);
 
+        Obserwatorzy.push_back(new Wykres(ui->tab_2));
+        Obserwatorzy.push_back(ui->LabelSrodkiDostepne);
 
         this->wyszukaj();
 
-        Obserwatorzy.push_back(new Wykres(ui->tab_2));
-        Obserwatorzy.push_back(ui->LabelSrodkiDostepne);
 
 
 
@@ -283,7 +296,7 @@ void Wydatnik::usunObserwatora(Obserwator *obs)
 void Wydatnik::wyszukaj()
 {
     QString zapytanie, tmp;
-    zapytanie = "Select id, nazwa, kwota, data, opis FROM expenses ";
+    zapytanie = "Select id, nazwa, kwota, data, opis, wydatek FROM expenses ";
     if(ui->BoxTyp->currentIndex() == 1) //wydatek
     {
         zapytanie.append("where wydatek = '1' AND ");
@@ -314,8 +327,9 @@ void Wydatnik::wyszukaj()
     ui->sqledit->setText(zapytanie);
     this->exec(zapytanie);
     zaladujDane(zapytanie);
-
     RefreshData(this);
+
+
 
 }
 void Wydatnik::ustawDate(QWidget* o)
@@ -418,9 +432,10 @@ void Wydatnik::OdtworzStan()
 {
     db->exec(historia[historia.size()-1]->OdtworzStan());
     qDebug() << "cos" << historia[historia.size()-1]->OdtworzStan();
-   delete historia[historia.size()-1];
-    if(historia.empty())
+    delete historia[historia.size()-1];
+    if(historia.size()==0)
         ui->actionCofnij->setDisabled(true);
+    this->aktualizujSaldo();
 
 }
 void Wydatnik::aktualizujSaldo()

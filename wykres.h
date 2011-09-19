@@ -59,6 +59,7 @@ protected:
     QStringList* lista;
 
 
+
 };
 
 #endif // WYKRES_H

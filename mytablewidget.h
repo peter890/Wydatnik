@@ -5,6 +5,9 @@
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlRecord>
 #include <QtSql/QSqlQuery>
+#include "obserwator.h"
+#include "obserwowany.h"
+#include "wydatnik.h"
 
 #include <QtGui>
 
@@ -14,6 +17,7 @@ class MyTableWidget : public QTableWidget
 public:
     MyTableWidget(QWidget *parent = 0);
     MyTableWidget(QWidget *parent,int row, int col);
+
 
     void wstawWierszZa(int index); //index = 0 wstawia wiersz na poczatku;
     void wstawWierszPrzed(int index);

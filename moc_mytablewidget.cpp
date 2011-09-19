@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mytablewidget.h'
 **
-** Created: Sun Sep 18 20:05:06 2011
+** Created: Mon Sep 19 16:45:04 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.2)
 **
 ** WARNING! All changes made in this file will be lost!
