@@ -157,7 +157,7 @@ font-size: 15px;
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox">
+   <widget class="QCheckBox" name="checkBox2">
     <property name="enabled">
      <bool>false</bool>
     </property>

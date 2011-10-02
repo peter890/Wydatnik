@@ -17,9 +17,7 @@
    <string>Wydatnik</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">
-
-</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralWidget">
    <property name="styleSheet">
@@ -31,9 +29,6 @@
 </string>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
-    <item>
-     <widget class="QLineEdit" name="sqledit"/>
-    </item>
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="enabled">
@@ -421,6 +416,19 @@ max-height: 13px;
           </property>
          </widget>
         </item>
+        <item row="0" column="1">
+         <spacer name="horizontalSpacer_4">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="tab_2">
@@ -431,6 +439,18 @@ max-height: 13px;
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -458,8 +478,9 @@ max-height: 13px;
     <addaction name="actionEdytuj"/>
     <addaction name="actionUsu_zaznaczone"/>
     <addaction name="separator"/>
-    <addaction name="actionZarejestruj"/>
     <addaction name="actionCofnij"/>
+    <addaction name="separator"/>
+    <addaction name="actionZarejestruj"/>
    </widget>
    <widget class="QMenu" name="menuPomoc">
     <property name="title">
@@ -471,18 +492,6 @@ max-height: 13px;
    <addaction name="menuEdycja"/>
    <addaction name="menuPomoc"/>
   </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <property name="floatable">
-    <bool>false</bool>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QStatusBar" name="statusBar"/>
   <action name="actionZaloguj">
    <property name="icon">
     <iconset resource="icons/ikony.qrc">

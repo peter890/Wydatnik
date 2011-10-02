@@ -45,17 +45,17 @@ public slots:
 class Dane
 {
 public:
-    Dane(QString _date, double _value, bool _wydatek);
+    Dane(QString _date, double _value, int _wydatek);
     Dane(Dane*);
     Dane(QStringList _lista){lista = new QStringList(_lista);}
     QString getData();
     double getValue();
-    bool getWydatek();
+    int getWydatek();
 
 protected:
     QString data;
     double wartosc;
-    bool wydatek;
+    int wydatek;
     QStringList* lista;
 
 

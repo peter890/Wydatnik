@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'wydatnik.h'
 **
-** Created: Mon Sep 19 18:55:12 2011
+** Created: Thu Sep 22 10:44:53 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_Wydatnik[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-      15,   14, // methods
+      16,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -48,6 +48,7 @@ static const uint qt_meta_data_Wydatnik[] = {
      227,   10,    9,    9, 0x08,
      250,    9,    9,    9, 0x08,
      266,    9,    9,    9, 0x08,
+     275,    9,    9,    9, 0x08,
 
        0        // eod
 };
@@ -60,7 +61,7 @@ static const char qt_meta_stringdata_Wydatnik[] = {
     "zaznaczenie(QWidget*)\0ZapiszStan(QString)\0"
     "OdtworzStan()\0aktualizujSaldo()\0"
     "wyszukaj()\0changeConnection(bool)\0"
-    "zmienStan(bool)\0edytuj()\0"
+    "zmienStan(bool)\0edytuj()\0createMenu()\0"
 };
 
 const QMetaObject Wydatnik::staticMetaObject = {
@@ -109,9 +110,10 @@ int Wydatnik::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 12: changeConnection((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 13: zmienStan((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 14: edytuj(); break;
+        case 15: createMenu(); break;
         default: ;
         }
-        _id -= 15;
+        _id -= 16;
     }
     return _id;
 }

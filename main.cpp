@@ -9,6 +9,7 @@ int main(int argc, char *argv[])
     QApplication::setApplicationName("Wydatnik");
     QApplication::setApplicationVersion("0.1 alfa 5");
     Wydatnik* w = Wydatnik::getInstance();
+    QApplication::setWindowIcon(QIcon(":/icon/Key-icon.png"));
     w->setWindowTitle(QApplication::applicationName()+" v"+QApplication::applicationVersion());
 
 

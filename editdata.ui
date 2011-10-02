@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Wydatnik - edytuj rekord</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QLineEdit[echoMode=&quot;2&quot;] {

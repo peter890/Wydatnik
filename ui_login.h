@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'login.ui'
 **
-** Created: Mon Sep 19 19:50:42 2011
+** Created: Fri Sep 23 11:29:04 2011
 **      by: Qt User Interface Compiler version 4.7.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -34,7 +34,7 @@ public:
     QLineEdit *edit_login;
     QLabel *label_haslo;
     QPushButton *button_zaloguj;
-    QCheckBox *checkBox;
+    QCheckBox *checkBox2;
     QLabel *label_register;
 
     void setupUi(QMainWindow *Login)
@@ -111,13 +111,13 @@ public:
         icon1.addFile(QString::fromUtf8(":/icon/Check-icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         button_zaloguj->setIcon(icon1);
         button_zaloguj->setAutoDefault(false);
-        checkBox = new QCheckBox(centralwidget);
-        checkBox->setObjectName(QString::fromUtf8("checkBox"));
-        checkBox->setEnabled(false);
-        checkBox->setGeometry(QRect(30, 140, 95, 16));
+        checkBox2 = new QCheckBox(centralwidget);
+        checkBox2->setObjectName(QString::fromUtf8("checkBox2"));
+        checkBox2->setEnabled(false);
+        checkBox2->setGeometry(QRect(30, 140, 95, 16));
         QFont font;
         font.setPointSize(7);
-        checkBox->setFont(font);
+        checkBox2->setFont(font);
         label_register = new QLabel(centralwidget);
         label_register->setObjectName(QString::fromUtf8("label_register"));
         label_register->setGeometry(QRect(260, 150, 71, 16));
@@ -141,7 +141,7 @@ public:
         button_anuluj->setText(QApplication::translate("Login", "Anuluj", 0, QApplication::UnicodeUTF8));
         label_haslo->setText(QApplication::translate("Login", "Has\305\202o", 0, QApplication::UnicodeUTF8));
         button_zaloguj->setText(QApplication::translate("Login", "Zaloguj", 0, QApplication::UnicodeUTF8));
-        checkBox->setText(QApplication::translate("Login", "Zapami\304\231taj mnie", 0, QApplication::UnicodeUTF8));
+        checkBox2->setText(QApplication::translate("Login", "Zapami\304\231taj mnie", 0, QApplication::UnicodeUTF8));
         label_register->setText(QApplication::translate("Login", "zarejestruj si\304\231...", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 

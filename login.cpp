@@ -36,15 +36,6 @@ void Login::zaloguj()
 
     if(Wydatnik::getInstance()->zaloguj(login, hash->result().toHex()))
     {
-//        if(ui->checkBox->isChecked())
-//        {
-//            QSettings settings;
-//            settings.beginGroup("User");
-//            settings.setValue("remember", "1");
-//            settings.setValue("username", login);
-//            settings.setValue("password", (QString)hash->result().toHex());
-//            settings.endGroup();
-//        }
         Wydatnik::getInstance()->show();
         this->close();
     }

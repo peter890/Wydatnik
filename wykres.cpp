@@ -32,7 +32,7 @@ void Wykres::paintEvent( QPaintEvent* event )
 
         painter.setPen(pen);
         //painter.setRenderHint (QPainter::Antialiasing);
-        // painter.setBrush(QBrush(Qt::red, Qt::SolidPattern));
+        painter.setBrush(QBrush(Qt::red, Qt::SolidPattern));
         QPoint pointStart;
         QPoint pointStop;
         pointStart.setX(x0);
@@ -58,6 +58,15 @@ void Wykres::paintEvent( QPaintEvent* event )
 
         for(int i=0; i<nD; i++)
         {
+            qDebug() << wyniki[i]->getValue() << "wydatek: " << wyniki[i]->getWydatek();
+            if(wyniki[i]->getWydatek() == 1)
+            {
+                painter.setBrush(QBrush(Qt::red, Qt::SolidPattern));
+            }
+            else
+            {
+                painter.setBrush(QBrush(Qt::blue, Qt::SolidPattern));
+            }
             double wart = wyniki[i]->getValue();
             int wysokosc = ((this->width() -(this->width()-y0)-15) * wart)/max;
             painter.drawRect(QRect(X,this->height()-x0,szerokosc,-wysokosc));
@@ -86,7 +95,7 @@ bool Wykres::insertData(vector<Dane *> w)
     if(w.size()!=0)
     {
         wyniki.erase(wyniki.begin(), wyniki.begin()+wyniki.size());
-        for(int i=0; i<w.size(); i++)
+        for(unsigned int i=0; i<w.size(); i++)
         {
             wyniki.push_back(new Dane(w[i]));
         }
@@ -96,11 +105,12 @@ bool Wykres::insertData(vector<Dane *> w)
     else
         return false;
 
+return 0;
 }
 double Wykres::maxValue()
 {
     double max = 0;
-    for(int i=0; i<wyniki.size(); i++)
+    for(unsigned int i=0; i<wyniki.size(); i++)
     {
         if(wyniki[i]->getValue() > max)
         {
@@ -120,11 +130,11 @@ void Wykres::zdarzenie(Obserwowany *o)
     }
     else
     {
-        false;
+        rysuj = false;
     }
 }
 
-Dane::Dane(QString _date, double _value, bool _wydatek)
+Dane::Dane(QString _date, double _value, int _wydatek)
 {
     data = _date;
     wartosc = _value;
@@ -145,7 +155,7 @@ double Dane::getValue()
 {
     return wartosc;
 }
-bool Dane::getWydatek()
+int Dane::getWydatek()
 {
     return wydatek;
 }

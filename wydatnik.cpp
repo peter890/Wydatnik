@@ -13,9 +13,19 @@ Wydatnik::Wydatnik(QWidget *parent) :
     QSettings settings(QApplication::applicationDirPath()+"/cfg/config.ini",QSettings::IniFormat);
     QTextCodec::setCodecForTr (QTextCodec::codecForName ("CP-1250"));
 
+    /*settings.beginGroup("DB");
+    settings.setValue("host", "localhost");
+    settings.setValue("login", "root");
+    settings.setValue("haslo", "root");
+    settings.setValue("baza", "wydatnik");
+    settings.setValue("port", "3306");
+    settings.endGroup();*/
+
+
     userid = -1 ;
     calendar = NULL;
     changedConnection(false);
+    createMenu();
     QRect frect = frameGeometry();
     frect.moveCenter(QDesktopWidget().availableGeometry().center());
     move(frect.topLeft());
@@ -26,15 +36,8 @@ Wydatnik::Wydatnik(QWidget *parent) :
 
 
 
-    //settings.setValue("Run/FirstRun", 1);
-    //int x = QInputDialog::getInteger(this,"tekst","cos");
-    if(settings.value("RUN/FirstRun",1).toInt())
-    {
-        //firstrun = new FirstRun(0);
-        //firstrun->show();
 
 
-    }
 
     ui->setupUi(this);
 
@@ -42,12 +45,16 @@ Wydatnik::Wydatnik(QWidget *parent) :
 
 
     //connectDB("localhost","root","","wydatnik");
-
-    if(!connectDB("db4free.net","compal","kopek2705","wydatnik"))
+    settings.beginGroup("DB");
+    settings.value("host").toString();
+    //if(!connectDB("db4free.net","compal","kopek2705","wydatnik"))
+    if(!connectDB(settings.value("host").toString(),settings.value("login").toString(),settings.value("haslo").toString(),settings.value("baza").toString(), settings.value("port").toInt()))
     {
         DBError(db->lastError());
+        this->~Wydatnik();
     }
-zaloguj();
+    zaloguj();
+
 
 
 }
@@ -64,6 +71,15 @@ Wydatnik::~Wydatnik()
     delete db;
     delete ui;
     delete login;
+}
+
+void Wydatnik::createMenu()
+{
+
+
+    //fileToolBar = new QToolBar(this);
+    //fileToolBar->addAction(ui->actionZaloguj);
+    //addToolBar(fileToolBar);
 }
 void Wydatnik::zaladujPolaczenia()
 {
@@ -90,6 +106,7 @@ void Wydatnik::zaladujPolaczenia()
 
     ui->actionUsu_zaznaczone->setDisabled(true);
     ui->actionCofnij->setDisabled(true);
+    ui->actionEdytuj->setDisabled(true);
 
 
 }
@@ -101,7 +118,7 @@ void Wydatnik::keyPressEvent(QKeyEvent *k)
     case Qt::Key_Insert:
         dodajWydatek();
         break;
-     case 16777220:
+    case 16777220:
         wyszukaj();
         break;
 
@@ -166,7 +183,7 @@ int Wydatnik::getUserid()
 {
     return userid;
 }
-bool Wydatnik::connectDB(QString _hostname, QString _username, QString _password, QString _dbname)
+bool Wydatnik::connectDB(QString _hostname, QString _username, QString _password, QString _dbname, int _port)
 {
     db = new QSqlDatabase();
     *db = QSqlDatabase::addDatabase("QMYSQL");
@@ -174,7 +191,7 @@ bool Wydatnik::connectDB(QString _hostname, QString _username, QString _password
     db->setUserName(_username);
     db->setPassword(_password);
     db->setDatabaseName(_dbname);
-    db->setPort(3306);
+    db->setPort(_port);
     if(db->open())
     {
         return true;
@@ -188,6 +205,10 @@ void Wydatnik::exec(QString _query)
 
     ui->tableWidget->sqlQuery(zapytanie);
     ui->tableWidget->setHorizontalHeaderLabel(0,"zaznaczenie");
+    ui->tableWidget->hideColumn(ui->tableWidget->columnCount()-1);
+    ui->tableWidget->setColumnWidth(0,14);
+
+
 
 
 
@@ -279,7 +300,7 @@ void Wydatnik::zaladujDane(QSqlQuery zapytanie)
     dane.clear();
     while(zapytanie.next())
     {
-        dane.push_back(new Dane(zapytanie.value(3).toString().remove(0,5),zapytanie.value(2).toDouble(),zapytanie.value(4).toInt()));
+        dane.push_back(new Dane(zapytanie.value(3).toString().remove(0,5),zapytanie.value(2).toDouble(),zapytanie.value(5).toInt()));
     }
 
 
@@ -324,7 +345,7 @@ void Wydatnik::wyszukaj()
 
     zapytanie.append(" ORDER BY data;");
 
-    ui->sqledit->setText(zapytanie);
+    // ui->sqledit->setText(zapytanie);
     this->exec(zapytanie);
     zaladujDane(zapytanie);
     RefreshData(this);
@@ -373,6 +394,7 @@ vector<Dane*> Wydatnik::getData()
 void Wydatnik::zaznaczenie(QWidget* w)
 {
     qDebug() << "zaznaczenie\n";
+    ui->actionEdytuj->setDisabled(false);
     MyCheckBox* myBox = dynamic_cast<MyCheckBox*>(w);
     if(!lista_zaznaczone.empty())
     {
@@ -381,6 +403,10 @@ void Wydatnik::zaznaczenie(QWidget* w)
             if(myBox->getId() == dynamic_cast<MyCheckBox*>(lista_zaznaczone.at(i))->getId())
             {
                 lista_zaznaczone.removeOne(w);
+                if(lista_zaznaczone.size()==0)
+                {
+                    ui->actionEdytuj->setDisabled(true);
+                }
                 //ui->listSize->setNum(lista_zaznaczone.size());
                 return;
             }
@@ -390,6 +416,7 @@ void Wydatnik::zaznaczenie(QWidget* w)
     //ui->listSize->setNum(lista_zaznaczone.size());
     //QMessageBox::information(0,"tekst","id: "+temp.setNum(myBox->getId()));
     ui->tableWidget->selectRow(myBox->getRowNum());
+
 
 }
 void Wydatnik::edytuj()
@@ -412,7 +439,6 @@ void Wydatnik::edytuj()
                 //qDebug() << ui->tableWidget->item(myBox->getRowNum(),k)->text();
                 lista << ui->tableWidget->item(myBox->getRowNum(),k)->text();
                 myBox->setChecked(false);
-
             }
 
         }
@@ -420,26 +446,38 @@ void Wydatnik::edytuj()
         editData = new EditData(lista);
         editData->show();
 
+        if(lista_zaznaczone.empty())
+        {
+            ui->actionEdytuj->setDisabled(true);
+        }
+
     }
 }
 void Wydatnik::ZapiszStan(QString zapytanie)
 {
     historia.push_back(new Pamiatka(zapytanie));
     ui->actionCofnij->setDisabled(false);
+    qDebug() <<"historia.size(): " << historia.size();
 
 }
 void Wydatnik::OdtworzStan()
 {
     db->exec(historia[historia.size()-1]->OdtworzStan());
     qDebug() << "cos" << historia[historia.size()-1]->OdtworzStan();
-    delete historia[historia.size()-1];
+    historia.pop_back();
     if(historia.size()==0)
         ui->actionCofnij->setDisabled(true);
     this->aktualizujSaldo();
+    this->wyszukaj();
 
 }
 void Wydatnik::aktualizujSaldo()
 {
     QString temp;
     Wydatnik::getInstance()->db->exec("UPDATE users SET saldo = (SELECT SUM(kwota) FROM expenses WHERE userId="+temp.setNum(Wydatnik::getInstance()->getUserid())+" AND wydatek = 0) - (SELECT SUM(kwota) FROM expenses WHERE userId="+temp.setNum(Wydatnik::getInstance()->getUserid())+" AND wydatek = 1) WHERE id = "+temp.setNum(Wydatnik::getInstance()->getUserid())+";");
+}
+
+void Wydatnik::contextMenuEvent(QContextMenuEvent *event)
+{
+    ui->menuEdycja->exec(event->globalPos());
 }

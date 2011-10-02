@@ -57,7 +57,7 @@ public:
     QSqlDatabase* db;
     QSignalMapper* signalMapper;
     QSignalMapper* signalMapper2;
-    bool connectDB(QString _hostname, QString _username, QString _password, QString _dbname);
+    bool connectDB(QString _hostname, QString _username, QString _password, QString _dbname, int _port);
     void DBError(QSqlError _error);
     void Error(QString _error);
     void exec(QString _query);
@@ -90,10 +90,15 @@ private:
     QStringList lista;
     QList<QWidget*> lista_zaznaczone; //lista ktora przechowuje informacje o zaznaczonych MyCheckBoxach. mozna wysciagnac info ktory wiersz i jakie id z mysql.
     void zaladujPolaczenia();
-    vector<Pamiatka*> historia; //vektor ktory zapamietuje ostatnio wykonanie operacje(polecenia odwrotne do wykonanych, tak zeby dało sie odwrócić czynnosc)
+    vector<Pamiatka*> historia; //vektor ktory zapamietuje ostatnio wykonanie operacje(zapytania sql odwrotne do wykonanych, tak zeby dało sie odwrócić czynnosc)
+
+    QToolBar* fileToolBar;
+    QToolBar* editToolBar;
+
 
 protected:
     virtual void keyPressEvent(QKeyEvent *);
+    virtual void contextMenuEvent(QContextMenuEvent *event);
 
 
 
@@ -116,6 +121,7 @@ private slots:
     void zmienStan(bool);
 
     void edytuj();
+    void createMenu();
 
 signals:
     void changedConnection(bool _connected);

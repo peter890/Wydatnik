@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'wydatnik.ui'
 **
-** Created: Mon Sep 19 18:54:55 2011
+** Created: Fri Sep 23 11:29:04 2011
 **      by: Qt User Interface Compiler version 4.7.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -50,7 +50,6 @@ public:
     QAction *actionCofnij;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout_2;
-    QLineEdit *sqledit;
     QTabWidget *tabWidget;
     QWidget *tab;
     QGridLayout *gridLayout;
@@ -92,13 +91,14 @@ public:
     MyTableWidget *tableWidget;
     QSpacerItem *horizontalSpacer_3;
     QLabel *label_username;
+    QSpacerItem *horizontalSpacer_4;
     QWidget *tab_2;
+    QStatusBar *statusBar;
+    QToolBar *toolBar;
     QMenuBar *menuBar;
     QMenu *menuPlik;
     QMenu *menuEdycja;
     QMenu *menuPomoc;
-    QToolBar *mainToolBar;
-    QStatusBar *statusBar;
 
     void setupUi(QMainWindow *Wydatnik)
     {
@@ -162,11 +162,6 @@ public:
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setContentsMargins(11, 11, 11, 11);
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
-        sqledit = new QLineEdit(centralWidget);
-        sqledit->setObjectName(QString::fromUtf8("sqledit"));
-
-        verticalLayout_2->addWidget(sqledit);
-
         tabWidget = new QTabWidget(centralWidget);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
         tabWidget->setEnabled(true);
@@ -439,6 +434,10 @@ public:
 
         gridLayout->addWidget(label_username, 0, 2, 1, 2);
 
+        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer_4, 0, 1, 1, 1);
+
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
@@ -447,6 +446,12 @@ public:
         verticalLayout_2->addWidget(tabWidget);
 
         Wydatnik->setCentralWidget(centralWidget);
+        statusBar = new QStatusBar(Wydatnik);
+        statusBar->setObjectName(QString::fromUtf8("statusBar"));
+        Wydatnik->setStatusBar(statusBar);
+        toolBar = new QToolBar(Wydatnik);
+        toolBar->setObjectName(QString::fromUtf8("toolBar"));
+        Wydatnik->addToolBar(Qt::TopToolBarArea, toolBar);
         menuBar = new QMenuBar(Wydatnik);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 800, 23));
@@ -457,13 +462,6 @@ public:
         menuPomoc = new QMenu(menuBar);
         menuPomoc->setObjectName(QString::fromUtf8("menuPomoc"));
         Wydatnik->setMenuBar(menuBar);
-        mainToolBar = new QToolBar(Wydatnik);
-        mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
-        mainToolBar->setFloatable(false);
-        Wydatnik->addToolBar(Qt::TopToolBarArea, mainToolBar);
-        statusBar = new QStatusBar(Wydatnik);
-        statusBar->setObjectName(QString::fromUtf8("statusBar"));
-        Wydatnik->setStatusBar(statusBar);
 
         menuBar->addAction(menuPlik->menuAction());
         menuBar->addAction(menuEdycja->menuAction());
@@ -476,8 +474,9 @@ public:
         menuEdycja->addAction(actionEdytuj);
         menuEdycja->addAction(actionUsu_zaznaczone);
         menuEdycja->addSeparator();
-        menuEdycja->addAction(actionZarejestruj);
         menuEdycja->addAction(actionCofnij);
+        menuEdycja->addSeparator();
+        menuEdycja->addAction(actionZarejestruj);
         menuPomoc->addAction(actionO_wydatniku);
 
         retranslateUi(Wydatnik);
@@ -528,6 +527,7 @@ public:
         label_username->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("Wydatnik", "Historia", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("Wydatnik", "Wykres", 0, QApplication::UnicodeUTF8));
+        toolBar->setWindowTitle(QApplication::translate("Wydatnik", "toolBar", 0, QApplication::UnicodeUTF8));
         menuPlik->setTitle(QApplication::translate("Wydatnik", "Plik", 0, QApplication::UnicodeUTF8));
         menuEdycja->setTitle(QApplication::translate("Wydatnik", "Edycja", 0, QApplication::UnicodeUTF8));
         menuPomoc->setTitle(QApplication::translate("Wydatnik", "Pomoc", 0, QApplication::UnicodeUTF8));

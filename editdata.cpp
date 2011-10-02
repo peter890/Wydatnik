@@ -87,6 +87,7 @@ bool EditData::confirm()
         return false;
         break;
     }
+    return false;
 }
 void EditData::keyPressEvent(QKeyEvent *k)
 {

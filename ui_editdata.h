@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'editdata.ui'
 **
-** Created: Mon Sep 19 11:07:30 2011
+** Created: Thu Sep 22 10:44:35 2011
 **      by: Qt User Interface Compiler version 4.7.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -232,7 +232,7 @@ public:
 
     void retranslateUi(QWidget *EditData)
     {
-        EditData->setWindowTitle(QApplication::translate("EditData", "Form", 0, QApplication::UnicodeUTF8));
+        EditData->setWindowTitle(QApplication::translate("EditData", "Wydatnik - edytuj rekord", 0, QApplication::UnicodeUTF8));
         label_nazwa->setText(QApplication::translate("EditData", "Nazwa", 0, QApplication::UnicodeUTF8));
         button_kalendarz->setText(QApplication::translate("EditData", "Kalendarz", 0, QApplication::UnicodeUTF8));
         label_data->setText(QApplication::translate("EditData", "Data   ", 0, QApplication::UnicodeUTF8));

@@ -17,6 +17,7 @@
         <file>Burn-Disk-icon.png</file>
         <file>Actions-help-about-icon.png</file>
         <file>Actions-document-edit-icon.png</file>
+        <file>back.png</file>
     </qresource>
     <qresource prefix="/img">
         <file>button_ok.png</file>

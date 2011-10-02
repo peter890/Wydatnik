@@ -31,16 +31,12 @@ bool Registration::passwdCmp()
 {
     if(QString::compare(ui->edit_haslo->text(),ui->edit_haslo2->text()))
     {
-        ui->label->setText("!");
-        ui->label->setStyleSheet("QLabel{color: red}");
-        ui->edit_haslo2->setStyleSheet("QLineEdit {background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #88d, stop: 0.1 #99e, stop: 0.49 #77c, stop: 0.5 #66b, stop: 1 #77c);}");
+        ui->edit_haslo2->setStyleSheet("QLineEdit {background-color: qlineargradient(spread:repeat, x1:0.346, y1:0, x2:0.359, y2:1, stop:0 rgba(255, 0, 0, 183), stop:1 rgba(255, 255, 255, 255));");
         return false;
     }
     else
     {
-        ui->label->setText("*");
-        ui->label->setStyleSheet("QLabel{color: green}");
-        ui->edit_haslo2->setStyleSheet("QLineEdit{ background-color: green;}");
+        ui->edit_haslo2->setStyleSheet("QLineEdit{ background-color: qlineargradient(spread:repeat, x1:0.346, y1:0, x2:0.359, y2:1, stop:0 rgba(138, 255, 0, 183), stop:1 rgba(255, 255, 255, 255));}");
         return true;
     }
 }
@@ -52,7 +48,6 @@ void Registration::rejestruj()
 {
     if(checkLogin() && checkEmail() && passwdCmp())
     {
-        //Wydatnik::getInstance()->db->open();
         QByteArray haslo = ui->edit_haslo->text().toUtf8();
         QCryptographicHash *hash = new QCryptographicHash(QCryptographicHash::Md5);
         hash->addData(haslo);
@@ -60,7 +55,8 @@ void Registration::rejestruj()
         this->close();
         if(zapytanie.numRowsAffected()!=0)
         {
-            QMessageBox::information(0,"rejestracja","dodano nowego uzytkownika");
+            QMessageBox::information(0,"rejestracja","dodano nowego uzytkownika\n zalogowano automatycznie");
+            Wydatnik::getInstance()->zaloguj(ui->edit_login->text(),hash->result().toHex());
         }
         else
         {
@@ -69,44 +65,35 @@ void Registration::rejestruj()
     }
     else
         Wydatnik::getInstance()->Error("Podano niepoprawne dane");
-
-
 }
 bool Registration::checkEmail()
 {
-    //Wydatnik::getInstance()->db->open();
     QSqlQuery zapytanie("SELECT email FROM users WHERE email = '"+ ui->edit_email->text()+"';");
     if(zapytanie.numRowsAffected() != 0 || ui->edit_email->text().length() == 0 )
     {
-        ui->label_2->setText("!");
-        ui->label_2->setStyleSheet("QLabel{color: red}");
+        ui->edit_email->setStyleSheet("QLineEdit{ background-color: qlineargradient(spread:repeat, x1:0.346, y1:0, x2:0.359, y2:1, stop:0 rgba(255, 0, 0, 183), stop:1 rgba(255, 255, 255, 255));}");
         return false;
     }
     else
     {
-        ui->label_2->setText("*");
-        ui->label_2->setStyleSheet("QLabel{color: green}");
+        ui->edit_email->setStyleSheet("QLineEdit{ background-color: qlineargradient(spread:repeat, x1:0.346, y1:0, x2:0.359, y2:1, stop:0 rgba(138, 255, 0, 183), stop:1 rgba(255, 255, 255, 255));}");
         return true;
     }
-    //Wydatnik::getInstance()->db->close();
+
 }
 bool Registration::checkLogin()
 {
-    //Wydatnik::getInstance()->db->open();
     QSqlQuery zapytanie("SELECT login FROM users WHERE login = '"+ ui->edit_login->text()+"';");
     if(zapytanie.numRowsAffected() != 0 || ui->edit_login->text().length() == 0 )
     {
-        ui->label_3->setText("!");
-        ui->label_3->setStyleSheet("QLabel{color: red}");
+        ui->edit_login->setStyleSheet("QLineEdit{ background-color: qlineargradient(spread:repeat, x1:0.346, y1:0, x2:0.359, y2:1, stop:0 rgba(255, 0, 0, 183), stop:1 rgba(255, 255, 255, 255));}");
         return false;
     }
     else
     {
-        ui->label_3->setText("*");
-        ui->label_3->setStyleSheet("QLabel{color: green}");
+        ui->edit_login->setStyleSheet("QLineEdit{ background-color: qlineargradient(spread:repeat, x1:0.346, y1:0, x2:0.359, y2:1, stop:0 rgba(138, 255, 0, 183), stop:1 rgba(255, 255, 255, 255));}");
         return true;
-    }
-    //Wydatnik::getInstance()->db->close();
+    }   
 }
 
 
